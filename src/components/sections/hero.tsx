@@ -41,7 +41,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl font-bold tracking-tight sm:text-7xl bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent leading-tight px-2 sm:px-0"
+          className="text-5xl font-bold tracking-tight sm:text-7xl bg-clip-text text-transparent leading-tight px-2 sm:px-0 animate-gradient-x"
+          style={{
+            backgroundSize: '200% 200%',
+            backgroundImage: 'linear-gradient(-45deg, #2563eb, #9333ea, #3b82f6, #a855f7, #6366f1, #2563eb)'
+          }}
         >
           <span className="block sm:inline">Andrés</span>{" "}
           <span className="block sm:inline">Córdova</span>
