@@ -20,7 +20,7 @@ export function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b"
     >
       <div className="container mx-auto flex justify-between items-center h-16 px-4">
-        <Link href="/" className="font-bold text-lg hover:text-primary transition-colors">
+        <Link href="/" className="font-bold text-lg bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 dark:hover:from-blue-300 dark:hover:via-purple-300 dark:hover:to-blue-300 transition-all duration-300">
           Andrés Córdova
         </Link>
 
