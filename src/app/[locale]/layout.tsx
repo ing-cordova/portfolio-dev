@@ -41,7 +41,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.className} animated-gradient`}>
+      <body className={inter.className}>
         <IntlProvider locale={locale} messages={messages}>
           <ThemeProvider
             attribute="class"
