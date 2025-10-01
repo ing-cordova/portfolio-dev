@@ -1,0 +1,119 @@
+{
+  "Hero": {
+    "title": "Desarrollador Full Stack",
+    "subtitle": "Construyendo un futuro mejor, una línea de código a la vez.",
+    "cta_projects": "Ver mis Proyectos",
+    "cta_contact": "Contacto",
+    "cta_cv": "Descargar CV",
+    "cv_tooltip": "Descargar mi CV en PDF"
+  },
+  "About": {
+    "title": "Sobre Mí",
+    "paragraph1": "¡Hola! Soy Andrés, un desarrollador apasionado por la creación de soluciones tecnológicas robustas y eficientes. Mi viaje en el mundo del código comenzó con el deseo de construir cosas que no solo funcionen bien, sino que también ofrezcan una experiencia de usuario excepcional.",
+    "paragraph2": "Me especializo en el ecosistema de JavaScript y Python, moviéndome con fluidez entre el frontend con React y el backend con Django o Node.js. Cuando no estoy programando, me encontrarás explorando nuevas rutas de senderismo o sumergido en un buen libro de ciencia ficción.",
+    "cta": "¿Listo para colaborar?",
+    "cta_pharagraph": "Siempre abierto a nuevos proyectos y oportunidades"
+  },
+  "Projects": {
+    "title": "Proyectos Destacados",
+    "description": "Una selección de mis proyectos más destacados, desde APIs robustas hasta interfaces elegantes",
+    "text_showing": "proyecto",
+    "items": [
+      {
+        "title": "API con Arquitectura Hexagonal",
+        "description": "Una API REST robusta construida con NestJS, aplicando principios de Arquitectura Hexagonal para un código desacoplado, mantenible y escalable.",
+        "image": "/projects/project-1.png",
+        "tags": ["NestJS", "TypeScript", "Docker", "PostgreSQL", "Prisma"],
+        "githubUrl": "https://github.com/tu-usuario/tu-repo-1",
+        "liveUrl": "https://tu-demo-1.com"
+      },
+      {
+        "title": "Panel de Administración",
+        "description": "Dashboard administrativo interactivo y responsivo desarrollado con Vue 3 y el Composition API, enfocado en la visualización de datos y gestión de usuarios.",
+        "image": "/projects/project-2.png",
+        "tags": ["Vue 3", "TypeScript", "Tailwind CSS", "Pinia", "Chart.js"],
+        "githubUrl": "https://github.com/tu-usuario/tu-repo-2"
+      }
+    ],
+    "cta": "¿Te interesa algún proyecto?",
+    "cta_paragraph": "Puedes explorar el código fuente o contactarme para más detalles",
+    "cta_contact": "Contactar",
+    "cta_git": "Ver más en GitHub"
+  },
+  "Experience": {
+    "title": "Experiencia Laboral",
+    "items": [
+      {
+        "date": "2021 - Hoy",
+        "title": "Full Stack Developer",
+        "company": "Tech Solutions Inc.",
+        "description": "Desarrollo y mantenimiento de aplicaciones web completas utilizando React, Node.js y PostgreSQL. Lideré la migración de una API monolítica a una arquitectura de microservicios."
+      },
+      {
+        "date": "2019 - 2021",
+        "title": "Frontend Developer",
+        "company": "Creative Minds LLC",
+        "description": "Creación de interfaces de usuario interactivas y responsivas para clientes de alto perfil. Optimización del rendimiento y mejora de la experiencia de usuario en múltiples proyectos."
+      },
+      {
+        "date": "2018 - 2019",
+        "title": "Junior Developer",
+        "company": "Innovate Startups",
+        "description": "Asistencia en el desarrollo de aplicaciones web, corrección de errores y colaboración en un equipo ágil para entregar nuevas funcionalidades."
+      }
+    ]
+  },
+  "Skills": {
+    "title": "Habilidades Técnicas",
+    "subtitle": "Tecnologías y herramientas que uso para dar vida a las ideas",
+    "labels": {
+      "technology": "tecnología",
+      "technologies": "tecnologías"
+    },
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native", "Vue 3"]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": ["Node.js", "Express", "Python", "Django", "NestJS"]
+      },
+      "databases": {
+        "title": "Bases de Datos",
+        "items": ["PostgreSQL", "MongoDB", "Prisma", "SQLAlchemy"]
+      },
+      "tools": {
+        "title": "Herramientas & DevOps",
+        "items": ["Docker", "Git", "GitHub", "CI/CD", "Jest", "Linux"]
+      }
+    }
+  },
+  "ProjectCard": {
+    "status": {
+      "production": "En Producción",
+      "finished": "Finalizado", 
+      "development": "En Desarrollo"
+    },
+    "buttons": {
+      "code": "Código",
+      "demo": "Demo",
+      "view_demo": "Ver Demo"
+    },
+    "labels": {
+      "preview": "Vista previa",
+      "technology": "tecnología",
+      "technologies": "tecnologías",
+      "more": "más"
+    }
+  },
+  "Contact": {
+    "title": "Hablemos",
+    "description": "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o oportunidades para ser parte de tus visiones. No dudes en contactarme.",
+    "email_button": "Envíame un Email",
+    "text_other": "O contáctate conmigo en:"
+  },
+  "Footer": {
+    "copyright": "© 2025 Andrés Córdova. Todos los derechos reservados."
+  }
+}

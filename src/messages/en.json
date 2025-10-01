@@ -1,0 +1,119 @@
+{
+  "Hero": {
+    "title": "Full Stack Developer",
+    "subtitle": "Building a better future, one line of code at a time.",
+    "cta_projects": "View my Projects",
+    "cta_contact": "Contact",
+    "cta_cv": "Download CV",
+    "cv_tooltip": "Download my CV in PDF"
+  },
+  "About": {
+    "title": "About Me",
+    "paragraph1": "Hello! I'm Andrés, a developer passionate about creating robust and efficient technological solutions. My journey into the world of code began with a desire to build things that not only work well but also provide an exceptional user experience.",
+    "paragraph2": "I specialize in the JavaScript and Python ecosystems, moving fluently between the frontend with React and the backend with Django or Node.js. When I'm not programming, you'll find me exploring new hiking trails or immersed in a good science fiction book.",
+    "cta": "Ready to collaborate?",
+    "cta_pharagraph": "Always open to new projects and opportunities"
+  },
+  "Projects": {
+    "title": "Featured Projects",
+    "description": "A selection of my most destacated projects, from robust APIs to elegant interfaces",
+    "text_showing": "project",
+    "items": [
+      {
+        "title": "API with Hexagonal Architecture",
+        "description": "A robust REST API built with NestJS, applying Hexagonal Architecture principles for decoupled, maintainable, and scalable code.",
+        "image": "/projects/project-1.png",
+        "tags": ["NestJS", "TypeScript", "Docker", "PostgreSQL", "Prisma"],
+        "githubUrl": "https://github.com/your-user/your-repo-1",
+        "liveUrl": "https://your-demo-1.com"
+      },
+      {
+        "title": "Admin Dashboard",
+        "description": "An interactive and responsive admin dashboard developed with Vue 3 and the Composition API, focused on data visualization and user management.",
+        "image": "/projects/project-2.png",
+        "tags": ["Vue 3", "TypeScript", "Tailwind CSS", "Pinia", "Chart.js"],
+        "githubUrl": "https://github.com/your-user/your-repo-2"
+      }
+    ],
+    "cta": "Are you interested in some of these projects?",
+    "cta_paragraph": "You can explore the code or contact me for more details.",
+    "cta_contact": "Contact",
+    "cta_git": "View more on GitHub"
+  },
+  "Experience": {
+    "title": "Work Experience",
+    "items": [
+      {
+        "date": "2021 - Present",
+        "title": "Full Stack Developer",
+        "company": "Tech Solutions Inc.",
+        "description": "Developing and maintaining full-stack web applications using React, Node.js, and PostgreSQL. Led the migration of a monolithic API to a microservices architecture."
+      },
+      {
+        "date": "2019 - 2021",
+        "title": "Frontend Developer",
+        "company": "Creative Minds LLC",
+        "description": "Creating interactive and responsive user interfaces for high-profile clients. Optimized performance and improved user experience across multiple projects."
+      },
+      {
+        "date": "2018 - 2019",
+        "title": "Junior Developer",
+        "company": "Innovate Startups",
+        "description": "Assisted in web application development, bug fixing, and collaborated in an agile team to deliver new features."
+      }
+    ]
+  },
+  "Skills": {
+    "title": "Technical Skills",
+    "subtitle": "Technologies and tools I use to bring ideas to life",
+    "labels": {
+      "technology": "technology",
+      "technologies": "technologies"
+    },
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native", "Vue 3"]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": ["Node.js", "Express", "Python", "Django", "NestJS"]
+      },
+      "databases": {
+        "title": "Databases",
+        "items": ["PostgreSQL", "MongoDB", "Prisma", "SQLAlchemy"]
+      },
+      "tools": {
+        "title": "Tools & DevOps",
+        "items": ["Docker", "Git", "GitHub", "CI/CD", "Jest", "Linux"]
+      }
+    }
+  },
+  "Contact": {
+    "title": "Let's Talk",
+    "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out.",
+    "email_button": "Send me an Email",
+    "text_other": "Or contact me on:"
+  },
+  "Footer": {
+    "copyright": "© 2025 Andrés Córdova. All rights reserved."
+  },
+  "ProjectCard": {
+    "status": {
+      "production": "In Production",
+      "finished": "Finished",
+      "development": "In Development"
+    },
+    "buttons": {
+      "code": "Code",
+      "demo": "Demo",
+      "view_demo": "View Demo"
+    },
+    "labels": {
+      "preview": "Preview",
+      "technology": "technology",
+      "technologies": "technologies",
+      "more": "more"
+    }
+  }
+}
