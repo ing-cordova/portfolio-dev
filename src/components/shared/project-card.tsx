@@ -130,17 +130,23 @@ export function ProjectCard({ title, description, image, tags, githubUrl, liveUr
         
         {/* Tags mejorados */}
         <div className="flex flex-wrap gap-2">
-          {tags.slice(0, 4).map((tag) => (
+          {tags.slice(0, 4).map((tag, index) => (
             <Badge 
               key={tag} 
               variant="outline" 
-              className="text-xs px-2 py-1 hover:bg-primary/10 transition-colors duration-200"
+              className="text-xs px-3 py-1.5 bg-primary/5 border-primary/20 text-primary font-medium hover:bg-primary/10 hover:border-primary/30 hover:scale-105 transition-all duration-200 shadow-sm"
+              style={{
+                animationDelay: `${index * 0.1}s`
+              }}
             >
               {tag}
             </Badge>
           ))}
           {tags.length > 4 && (
-            <Badge variant="outline" className="text-xs px-2 py-1 text-muted-foreground">
+            <Badge 
+              variant="outline" 
+              className="text-xs px-3 py-1.5 bg-muted/50 border-muted-foreground/20 text-muted-foreground font-medium hover:bg-muted/70 transition-all duration-200 shadow-sm"
+            >
               +{tags.length - 4} {t('ProjectCard.labels.more')}
             </Badge>
           )}
