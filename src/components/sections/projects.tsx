@@ -124,14 +124,16 @@ export function Projects() {
           transition={{ duration: 0.4, delay: 0.3 }}
           className="mb-8"
         >
-          <p className="text-sm text-muted-foreground">
-            {filteredProjects.length} / {projectItems.length} {t("text_showing")}{filteredProjects.length !== 1 ? 's' : ''}
+          <div className="text-sm text-muted-foreground flex items-center flex-wrap gap-2">
+            <span>
+              {filteredProjects.length} / {projectItems.length} {t("text_showing")}{filteredProjects.length !== 1 ? 's' : ''}
+            </span>
             {selectedFilter !== "all" && (
-              <Badge variant="secondary" className="ml-2">
+              <Badge variant="secondary">
                 {selectedFilter}
               </Badge>
             )}
-          </p>
+          </div>
         </motion.div>
 
         {/* Grid de proyectos */}
