@@ -79,7 +79,7 @@ export function Hero() {
             <Link href="#projects">
               <Button 
                 size="lg" 
-                className="group relative overflow-hidden bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group relative overflow-hidden bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
                 <span className="relative z-10 flex items-center">
                   {t("cta_projects")}
@@ -92,7 +92,7 @@ export function Hero() {
             <Button 
               size="lg" 
               variant="secondary"
-              className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
               onClick={() => {
                 window.open('/cv/andres-cordova-cv.pdf', '_blank')
               }}
@@ -107,7 +107,7 @@ export function Hero() {
             <Button 
               size="lg" 
               variant="outline"
-              className="group border-2 hover:border-primary/50 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+              className="group border-2 hover:border-primary/50 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md cursor-pointer"
             >
               <span>{t("cta_contact")}</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
