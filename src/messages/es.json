@@ -33,6 +33,14 @@
         "image": "/projects/project-2.png",
         "tags": ["Vue 3", "TypeScript", "Tailwind CSS", "Pinia", "Chart.js"],
         "githubUrl": "https://github.com/tu-usuario/tu-repo-2"
+      },
+      {
+        "title": "Plataforma Académica Internacional",
+        "description": "Plataforma completa para la gestión académica, construida con Django y React, con autenticación de usuarios, gestión de cursos y notificaciones en tiempo real.",
+        "image": "/projects/project-3.png",
+        "tags": ["Wordpress", "PHP", "Stripe", "MySQL", "Bootstrap", "jQuery", "Tutor LMS"],
+        "githubUrl": "",
+        "liveUrl": "https://braings.com"
       }
     ],
     "cta": "¿Te interesa algún proyecto?",
