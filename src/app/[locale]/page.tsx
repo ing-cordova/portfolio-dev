@@ -5,6 +5,7 @@ import { Experience } from "@/components/sections/experience";
 import { Skills } from "@/components/sections/skills";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
+import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Skills />
       <Contact />
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 }

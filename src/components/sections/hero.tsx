@@ -5,7 +5,7 @@ import { useTranslations } from "@/components/IntlProvider"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Download, ArrowRight, Sparkles } from "lucide-react"
-import Link from "next/link"
+import { SmoothScroll } from "@/components/shared/smooth-scroll"
 
 export function Hero() {
   const t = useTranslations("Hero")
@@ -76,7 +76,7 @@ export function Hero() {
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6"
         >
           <div className="flex items-center gap-x-4">
-            <Link href="#projects">
+            <SmoothScroll targetId="projects">
               <Button 
                 size="lg" 
                 className="group relative overflow-hidden bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
@@ -87,7 +87,7 @@ export function Hero() {
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </Button>
-            </Link>
+            </SmoothScroll>
             
             <Button 
               size="lg" 
@@ -103,7 +103,7 @@ export function Hero() {
             </Button>
           </div>
           
-          <Link href="#contact">
+          <SmoothScroll targetId="contact">
             <Button 
               size="lg" 
               variant="outline"
@@ -112,7 +112,7 @@ export function Hero() {
               <span>{t("cta_contact")}</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </Link>
+          </SmoothScroll>
         </motion.div>
       </div>
     </section>

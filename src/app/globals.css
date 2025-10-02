@@ -59,6 +59,11 @@
   border-color: hsl(var(--border));
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* Account for fixed navbar */
+}
+
 body {
   background: 
     radial-gradient(circle at 20% 20%, hsl(var(--primary) / 0.05) 0%, transparent 50%),
@@ -96,6 +101,23 @@ body::before {
 .animate-gradient-x {
   animation: gradient-x 3s ease infinite;
   background-size: 200% 200% !important;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+/* Ensure sections have proper spacing for scroll positioning */
+section {
+  scroll-margin-top: 4rem;
 }
 
 

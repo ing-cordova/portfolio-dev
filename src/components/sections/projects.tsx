@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Filter, Grid, List } from "lucide-react"
 import { useState } from "react"
+import { SmoothScroll } from "@/components/shared/smooth-scroll"
 
 interface ProjectItem {
   title: string;
@@ -201,9 +202,9 @@ export function Projects() {
             {t("cta_paragraph")}
           </p>
           <div className="flex justify-center gap-4">
-            <a href="#contact">
+            <SmoothScroll targetId="contact">
               <Button>{t("cta_contact")}</Button>
-            </a>
+            </SmoothScroll>
             <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">
               <Button variant="outline">{t("cta_git")}</Button>
             </a>
