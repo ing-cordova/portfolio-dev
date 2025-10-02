@@ -33,6 +33,7 @@ const AvatarImage = React.forwardRef<HTMLDivElement, AvatarImageProps>(
           src={src}
           alt={alt}
           fill
+          sizes="(max-width: 768px) 224px, 256px"
           className="object-cover"
         />
       )}

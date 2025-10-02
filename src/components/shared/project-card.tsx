@@ -61,12 +61,13 @@ export function ProjectCard({ title, description, image, tags, githubUrl, liveUr
     <Card className="group flex flex-col h-full overflow-hidden bg-background/60 backdrop-blur-sm border border-border/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
       {/* Imagen con overlay de información */}
       <div className="relative overflow-hidden">
-        <div className="relative w-full h-48 bg-muted">
+        <div className="relative w-full aspect-[3/1] bg-muted">
           {!imageError ? (
             <Image
               src={image}
               alt={title}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className={`object-cover transition-all duration-500 group-hover:scale-105 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}

@@ -58,7 +58,7 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/sparkle.ico" sizes="32x32" />
-        <link rel="icon" href="/sparkle-favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/sparkle.ico" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/sparkle.ico" />
         <meta name="theme-color" content="#3b82f6" />
       </head>
