@@ -86,6 +86,10 @@
       "tools": {
         "title": "Herramientas & DevOps",
         "items": ["Docker", "Git", "GitHub", "CI/CD", "Jest", "Linux"]
+      },
+      "server": {
+        "title": "Servidor",
+        "items": ["Nginx", "Apache", "AWS"]
       }
     }
   },

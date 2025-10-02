@@ -15,6 +15,7 @@ const categoryIcons = {
   design: <Palette className="w-8 h-8" />,
   tools: <Wrench className="w-8 h-8" />,
   web: <Globe className="w-8 h-8" />,
+  server: <Server className="w-8 h-8" />,
 } as const
 
 // Colores para cada categoría
@@ -25,6 +26,7 @@ const categoryColors = {
   design: "from-pink-500/20 to-rose-500/20 border-pink-500/30",
   tools: "from-orange-500/20 to-amber-500/20 border-orange-500/30",
   web: "from-indigo-500/20 to-blue-500/20 border-indigo-500/30",
+  server: "from-red-500/20 to-yellow-500/20 border-red-500/30",
 } as const
 
 export function Skills() {
