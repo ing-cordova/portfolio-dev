@@ -41,7 +41,7 @@ export function About() {
         </motion.div>
 
         {/* Contenido principal */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto px-4">
           
           {/* Columna izquierda - Avatar y estadísticas */}
           <motion.div
@@ -49,10 +49,10 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-10 flex flex-col items-center lg:items-start"
+            className="flex flex-col h-full"
           >
             {/* Avatar con efectos */}
-            <div className="relative flex justify-center lg:justify-center w-full">
+            <div className="relative flex justify-center w-full mb-10">
               <div className="relative group">
                 {/* Anillo decorativo */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
@@ -71,7 +71,7 @@ export function About() {
             </div>
 
             {/* Estadísticas */}
-            <div className="grid grid-cols-2 gap-4 w-full max-w-sm mx-auto lg:max-w-md">
+            <div className="grid grid-cols-2 gap-4 w-full max-w-sm mx-auto lg:max-w-md flex-grow">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -79,17 +79,22 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  className="h-full"
                 >
                   <Card className="group hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 bg-background/50 backdrop-blur-sm border border-border/50 h-full">
-                    <CardContent className="p-4 text-center flex flex-col justify-center h-full min-h-[120px]">
-                      <div className="flex justify-center mb-3 text-primary group-hover:scale-110 transition-transform duration-200">
-                        {stat.icon}
-                      </div>
-                      <div className="text-xl font-bold text-foreground mb-2">
-                        {stat.value}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {stat.label}
+                    <CardContent className="p-0 h-full min-h-[120px]">
+                      <div className="h-full pt-4 grid place-items-center text-center">
+                        <div className="space-y-1">
+                          <div className="flex justify-center items-center text-primary group-hover:scale-110 transition-transform duration-200">
+                            {stat.icon}
+                          </div>
+                          <div className="text-xl font-bold text-foreground">
+                            {stat.value}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {stat.label}
+                          </div>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -104,17 +109,18 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-8 w-full"
+            className="flex flex-col h-full"
           >
-            <Card className="group hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 bg-background/60 backdrop-blur-md border border-border/50">
-              <CardContent className="p-8 lg:p-10">
-                <div className="space-y-8">
+            {/* Card principal con contenido dinámico */}
+            <Card className="group hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 bg-background/60 backdrop-blur-md border border-border/50 flex-grow">
+              <CardContent className="p-8 lg:p-10 h-full flex flex-col">
+                <div className="space-y-6 flex-grow">
                   <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="text-lg leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                    className="text-lg pt-4 leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300"
                   >
                     {t("paragraph1")}
                   </motion.p>
@@ -138,20 +144,17 @@ export function About() {
                     className="h-0.5 bg-gradient-to-r from-primary/50 via-secondary/50 to-transparent rounded-full"
                   />
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Tarjeta adicional con call-to-action */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-            >
-              <Card className="group hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 bg-gradient-to-br from-primary/5 to-secondary/5 backdrop-blur-sm border border-primary/20">
-                <CardContent className="px-8 py-6">
+                {/* Call-to-action integrado */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  className="mt-8 p-6 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border border-primary/10"
+                >
                   <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1 pt-1">
+                    <div className="flex-1">
                       <h3 className="text-lg font-semibold text-foreground mb-2">
                         {t("cta")}
                       </h3>
@@ -163,9 +166,9 @@ export function About() {
                       <Heart className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-200" />
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                </motion.div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </div>
