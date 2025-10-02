@@ -114,6 +114,14 @@
     "text_other": "O contáctate conmigo en:"
   },
   "Footer": {
-    "copyright": "© 2025 Andrés Córdova. Todos los derechos reservados."
+    "copyright": "© {year} Andrés Córdova. Todos los derechos reservados."
+  },
+  "FloatingNav": {
+    "hero": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "contact": "Hablemos"
   }
 }

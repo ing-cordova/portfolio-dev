@@ -42,17 +42,17 @@ export function ScrollToTopButton() {
             ease: "easeOut"
           }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 group"
+          className="fixed bottom-20 right-4 z-50 group sm:bottom-8 sm:right-8"
           aria-label="Scroll to top"
         >
           {/* Background with glassmorphism effect */}
-          <div className="relative w-14 h-14 rounded-full bg-background/90 backdrop-blur-md border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="relative w-12 h-12 rounded-full bg-background/90 backdrop-blur-md border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all duration-300 sm:w-14 sm:h-14">
             {/* Always visible gradient background */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/15 group-hover:from-primary/30 group-hover:to-purple-500/25 transition-all duration-300" />
             
             {/* Icon */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <ArrowUp className="w-6 h-6 text-primary group-hover:text-primary group-hover:-translate-y-1 transition-all duration-200 drop-shadow-sm" />
+              <ArrowUp className="w-5 h-5 text-primary group-hover:text-primary group-hover:-translate-y-1 transition-all duration-200 drop-shadow-sm sm:w-6 sm:h-6" />
             </div>
             
             {/* Enhanced border glow */}

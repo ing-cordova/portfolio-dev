@@ -96,7 +96,15 @@
     "text_other": "Or contact me on:"
   },
   "Footer": {
-    "copyright": "© 2025 Andrés Córdova. All rights reserved."
+    "copyright": "© {year} Andrés Córdova. All rights reserved."
+  },
+  "FloatingNav": {
+    "hero": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "skills": "Skills",
+    "contact": "Contact"
   },
   "ProjectCard": {
     "status": {
