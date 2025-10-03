@@ -12,7 +12,13 @@
     "paragraph1": "Systems Engineer & Full Stack Developer with 2.5+ years of experience designing and implementing scalable software solutions. Skilled in backend (Java, Node.js, Python, DJango PHP), frontend (Vue3, React, TypeScript), and databases (PostgreSQL, MySQL, MongoDB). Proficient in Docker, Git, CI/CD, and Linux.",
     "paragraph2": "Strong background in software architecture, microservices, and deployment. Bilingual: English & Spanish. Seeking remote opportunities to contribute to innovative and impactful projects.",
     "cta": "Ready to collaborate?",
-    "cta_pharagraph": "Always open to new projects and opportunities"
+    "cta_pharagraph": "Always open to new projects and opportunities",
+    "stats": {
+      "projects": "Projects",
+      "coffee": "Coffees",
+      "location": "Location",
+      "passion": "Passion"
+    }
   },
   "Projects": {
     "title": "Featured Projects",
@@ -21,26 +27,27 @@
     "items": [
       {
         "title": "API with Hexagonal Architecture",
-        "description": "A robust REST API built with NestJS, applying Hexagonal Architecture principles for decoupled, maintainable, and scalable code.",
+        "description": "A backend template built with NestJS implementing Hexagonal (Ports & Adapters) Architecture, designed for scalability,maintainability, and clean separation of concerns. It includes modular design, dependency injection, testing setup, and ready-to-use configurations for enterprise-grade applications.",
         "image": "/projects/project-1.png",
-        "tags": ["NestJS", "TypeScript", "Docker", "PostgreSQL", "Prisma"],
-        "githubUrl": "https://github.com/your-user/your-repo-1",
-        "liveUrl": "https://your-demo-1.com"
+        "tags": ["NestJS", "TypeScript", "Node Js","PostgreSQL", "Docker", "TypeORM", "JWT", "Jest", "Swagger"],
+        "githubUrl": "https://github.com/ing-cordova/nest-typeorm-hexagonal",
+        "status": "finished"
       },
       {
-        "title": "Admin Dashboard",
-        "description": "An interactive and responsive admin dashboard developed with Vue 3 and the Composition API, focused on data visualization and user management.",
+        "title": "Vue 3 Admin Dashboard Template (Vuetify)",
+        "description": "A modern admin dashboard template built with Vue 3 and Vuetify, featuring reusable UI components, responsive layout, dark mode support, and CRUD-ready modules. Designed as a base for scalable web applications with clean design and user-friendly navigation.",
         "image": "/projects/project-2.png",
-        "tags": ["Vue 3", "TypeScript", "Tailwind CSS", "Pinia", "Chart.js"],
-        "githubUrl": "https://github.com/your-user/your-repo-2"
+        "tags": ["Vue 3", "Vuetify", "TypeScript", "Pinia", "Chart.js"],
+        "githubUrl": "https://gitlab.com/ing-cordova/vue-frontend-template/-/tree/dev-cordova?ref_type=heads",
+        "status": "finished"
       },
-            {
-        "title": "International Academic Platform",
-        "description": "A comprehensive platform for managing academic activities, built with Django and React, featuring user authentication, course management, and real-time notifications.",
+      {
+        "title": "International Academic Platform, Braings",
+        "description": "Braings is an AI-powered online education academy designed to offer personalized, accessible, and secure learning. Built with modern technologies such as WordPress, Tutor LMS, and Stripe, it combines innovation and reliability to transform the way we learn.",
         "image": "/projects/project-3.png",
         "tags": ["Wordpress", "PHP", "Stripe", "MySQL", "Bootstrap", "jQuery", "Tutor LMS"],
-        "githubUrl": "",
-        "liveUrl": "https://braings.com"
+        "liveUrl": "https://braings.com",
+        "status": "production"
       }
     ],
     "cta": "Are you interested in some of these projects?",
@@ -52,7 +59,7 @@
     "title": "Work Experience",
     "items": [
       {
-        "date": "2024 - Hoy",
+        "date": "2024 - Present",
         "title": "Software Developer",
         "company": "Secretaría de Innovación de la Presidencia, El Salvador.",
         "description": "Developing innovative applications for different government portfolios, implementing new, scalable technologies."
@@ -81,19 +88,19 @@
     "categories": {
       "frontend": {
         "title": "Frontend",
-        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native", "Vue 3"]
+        "items": ["HTML5 & CSS3", "JavaScript", "TypeScript", "Vue 3", "React Js", "Next.js", "Tailwind CSS"]
       },
       "backend": {
         "title": "Backend",
-        "items": ["Node.js", "Express", "Python", "Django", "NestJS"]
+        "items": ["NestJS", "Node.js", "Loopback4","Java", "Spring Framework", "Python", "Django", "Laravel"]
       },
       "databases": {
         "title": "Databases",
-        "items": ["PostgreSQL", "MongoDB", "Prisma", "SQLAlchemy"]
+        "items": ["MySQL","SQL", "PostgreSQL", "MongoDB", "SQL Server"]
       },
       "tools": {
         "title": "Tools & DevOps",
-        "items": ["Docker", "Git", "GitHub", "CI/CD", "Jest", "Linux"]
+        "items": ["Git & Version Control", "Docker", "Azure DevOps", "Linux/Unix"]
       },
       "server": {
         "title": "Server",
@@ -105,7 +112,13 @@
     "title": "Let's Talk",
     "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out.",
     "email_button": "Send me an Email",
-    "text_other": "Or contact me on:"
+    "text_other": "Or contact me on:",
+    "methods": {
+      "email": "andrescordovaoficial@gmail.com",
+      "github": "https://github.com/ing-cordova",
+      "linkedin": "https://linkedin.com/in/ing-cordova",
+      "whatsapp": "https://wa.me/50376592632"
+    }
   },
   "Footer": {
     "copyright": "© {year} Andrés Córdova. All rights reserved."
