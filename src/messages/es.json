@@ -5,7 +5,8 @@
     "cta_projects": "Ver mis Proyectos",
     "cta_contact": "Contacto",
     "cta_cv": "Descargar CV",
-    "cv_tooltip": "Descarga mi CV en PDF"
+    "cv_tooltip": "Descarga mi CV en PDF",
+    "quote_button": "Cotizar"
   },
   "About": {
     "title": "Sobre Mí",
@@ -111,7 +112,7 @@
       },
       "server": {
         "title": "Servidor",
-        "items": ["Nginx", "Apache", "AWS"]
+        "items": ["Nginx"]
       }
     }
   },
@@ -137,6 +138,116 @@
     "experience": "Experiencia",
     "skills": "Habilidades",
     "contact": "Contacto"
+  },
+  "Quote": {
+    "title": "Cotizar Proyecto", 
+    "step_of": "Paso {step} de {total}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "contact": "Contactar",
+    "project_types": {
+      "landing": "Landing Page",
+      "webapp": "Web App",
+      "ecommerce": "E-commerce", 
+      "api": "API/Backend"
+    },
+    "project_descriptions": {
+      "landing": "Página promocional enfocada en conversión",
+      "webapp": "Aplicación web interactiva completa",
+      "ecommerce": "Tienda online con carrito y pagos",
+      "api": "Servicio backend y API REST"
+    },
+    "features": {
+      "responsive": "📱 Diseño Responsive",
+      "seo": "🔍 SEO Optimizado", 
+      "analytics": "📊 Google Analytics",
+      "forms": "📝 Formularios de Contacto",
+      "animations": "✨ Animaciones CSS",
+      "cms": "📚 CMS Simple",
+      "auth": "🔐 Sistema de Autenticación",
+      "dashboard": "📊 Dashboard/Panel Admin",
+      "database": "🗄️ Base de Datos",
+      "api": "🔌 API REST",
+      "realtime": "⚡ Tiempo Real (WebSockets)",
+      "cart": "🛒 Carrito de Compras",
+      "payments": "💳 Pasarela de Pagos",
+      "inventory": "📦 Gestión de Inventario", 
+      "orders": "📋 Sistema de Órdenes",
+      "admin": "👨‍💼 Panel de Administración",
+      "rest": "🔌 API REST",
+      "jwt": "🔐 Autenticación JWT",
+      "docs": "📖 Documentación API",
+      "tests": "🧪 Tests Automatizados",
+      "monitoring": "📈 Monitoreo y Logs"
+    },
+    "complexity": {
+      "simple": "Simple",
+      "medium": "Medio",
+      "complex": "Complejo"
+    },
+    "complexity_descriptions": {
+      "simple": "🟢 Simple - Funcionalidades básicas",
+      "medium": "🟡 Medio - Funcionalidades estándar",
+      "complex": "🔴 Complejo - Funcionalidades avanzadas"
+    },
+    "timeline_descriptions": {
+      "rush": "⚡ Urgente - 1-2 semanas (+50%)",
+      "normal": "📅 Normal - 3-4 semanas",
+      "flexible": "🗓️ Flexible - 5+ semanas (-15%)"
+    },
+    "timeline": {
+      "rush": "Urgente (1-2 semanas)",
+      "normal": "Normal (2-4 semanas)", 
+      "flexible": "Flexible (1-2 meses)"
+    },
+    "messages": {
+      "selected": "✅ Has seleccionado: <strong>{type}</strong>",
+      "select_project_first": "⚠️ Primero selecciona un tipo de proyecto en el Paso 1",
+      "features_selected": "✅ {count} funcionalidades seleccionadas",
+      "selected_features": "FUNCIONALIDADES SELECCIONADAS ⚡:",
+      "price_estimation": "Estimación de Precio:",
+      "base_price": "Precio Base:",
+      "features_total": "Total de Funcionalidades:",
+      "complexity_adjustment": "Ajuste por Complejidad:",
+      "timeline_adjustment": "Ajuste por Timeline:",
+      "total_estimated": "Total Estimado:",
+      "note": "* Esta es una estimación. El precio final puede variar según los requerimientos específicos.",
+      "whatsapp_message": "¡Hola! Estoy interesado en un proyecto {type}. Aquí están los detalles:\n\n📋 DETALLES DEL PROYECTO:\n→ Tipo: {projectType}\n→ Complejidad: {complexity}\n→ Timeline: {timeline}\n\n{featuresText}\n\n💰 PRESUPUESTO ESTIMADO: ${total}\n\n¿Podemos discutir este proyecto?",
+      "included": "(incluido)"
+    },
+    "step1": {
+      "title": "¿Qué tipo de proyecto necesitas?",
+      "subtitle": "Selecciona el tipo que mejor describe tu proyecto" 
+    },
+    "step2": {
+      "title": "¿Qué funcionalidades incluirá?",
+      "subtitle": "Marca todas las que apliquen",
+      "select_features": "Selecciona las funcionalidades para tu <strong>{type}</strong>:"
+    },
+    "step3": {
+      "title": "Complejidad y cronograma",
+      "subtitle": "Ayúdanos a entender mejor tu proyecto",
+      "complexity_title": "Complejidad del proyecto:",
+      "timeline_title": "Timeline del proyecto:"
+    },
+    "step4": {
+      "title": "¡Tu cotización está lista!",
+      "subtitle": "Resumen de tu proyecto y estimación",
+      "estimated_quote": "Cotización estimada para tu proyecto",
+      "project_summary": {
+        "type": "Tipo:",
+        "features": "Funcionalidades:",
+        "features_selected": "seleccionadas",
+        "complexity": "Complejidad:",
+        "timeline": "Timeline:",
+        "not_selected": "No seleccionado"
+      },
+      "contact_message": "📞 Contáctame para una cotización detallada",
+      "actions": {
+        "copy_quote": "Copiar Cotización",
+        "send_whatsapp": "Enviar por WhatsApp"
+      }
+    }
   },
   "ProjectCard": {
     "status": {
