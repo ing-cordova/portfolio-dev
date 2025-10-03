@@ -10,10 +10,10 @@ export function About() {
   const t = useTranslations("About")
 
   const stats = [
-    { icon: <Code2 className="w-6 h-6" />, label: "Proyectos", value: "50+" },
-    { icon: <Coffee className="w-6 h-6" />, label: "Cafés", value: "∞" },
-    { icon: <MapPin className="w-6 h-6" />, label: "Ubicación", value: "Remote" },
-    { icon: <Heart className="w-6 h-6" />, label: "Pasión", value: "100%" },
+    { icon: <Code2 className="w-6 h-6" />, label: t("stats.projects"), value: "10+" },
+    { icon: <Coffee className="w-6 h-6" />, label: t("stats.coffee"), value: "∞" },
+    { icon: <MapPin className="w-6 h-6" />, label: t("stats.location"), value: "Remote" },
+    { icon: <Heart className="w-6 h-6" />, label: t("stats.passion"), value: "100%" },
   ]
 
   return (
