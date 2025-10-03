@@ -21,6 +21,14 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export function Contact() {
   const t = useTranslations("Contact")
+  
+  // Obtener métodos de contacto de las traducciones
+  const contactMethods = t.raw("methods") as {
+    email: string;
+    github: string;
+    linkedin: string;
+    whatsapp: string;
+  }
 
   return (
     <section id="contact" className="relative py-24 px-4 overflow-hidden">
@@ -55,7 +63,7 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12"
         >
-          <Link href="mailto:tu-email@ejemplo.com" target="_blank">
+          <Link href={`mailto:${contactMethods.email}`} target="_blank">
             <Button size="lg" className="gap-3 px-8 py-3 text-lg hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
               <Mail className="h-5 w-5" />
               {t("email_button")}
@@ -74,38 +82,44 @@ export function Contact() {
           <p className="text-sm text-muted-foreground mb-6">{t("text_other")}</p>
           
           <div className="flex justify-center items-center gap-4">
-            <Link href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">
-              <Button 
-                variant="outline" 
-                size="icon" 
-                aria-label="GitHub"
-                className="hover:bg-gray-50 hover:border-gray-300 dark:hover:bg-gray-900 dark:hover:border-gray-700 transition-all duration-200 hover:scale-110"
-              >
-                <Github className="h-5 w-5" />
-              </Button>
-            </Link>
+            {contactMethods.github && (
+              <Link href={contactMethods.github} target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  aria-label="GitHub"
+                  className="hover:bg-gray-50 hover:border-gray-300 dark:hover:bg-gray-900 dark:hover:border-gray-700 transition-all duration-200 hover:scale-110"
+                >
+                  <Github className="h-5 w-5" />
+                </Button>
+              </Link>
+            )}
             
-            <Link href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer">
-              <Button 
-                variant="outline" 
-                size="icon" 
-                aria-label="LinkedIn"
-                className="hover:bg-blue-50 hover:border-blue-200 dark:hover:bg-blue-950 dark:hover:border-blue-800 transition-all duration-200 hover:scale-110"
-              >
-                <Linkedin className="h-5 w-5 text-blue-600 hover:text-blue-700" />
-              </Button>
-            </Link>
+            {contactMethods.linkedin && (
+              <Link href={contactMethods.linkedin} target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  aria-label="LinkedIn"
+                  className="hover:bg-blue-50 hover:border-blue-200 dark:hover:bg-blue-950 dark:hover:border-blue-800 transition-all duration-200 hover:scale-110"
+                >
+                  <Linkedin className="h-5 w-5 text-blue-600 hover:text-blue-700" />
+                </Button>
+              </Link>
+            )}
             
-            <Link href="https://wa.me/tu-numero" target="_blank" rel="noopener noreferrer">
-              <Button 
-                variant="outline" 
-                size="icon" 
-                aria-label="WhatsApp" 
-                className="hover:bg-green-50 hover:border-green-200 dark:hover:bg-green-950 dark:hover:border-green-800 transition-all duration-200 hover:scale-110"
-              >
-                <WhatsAppIcon className="h-5 w-5 text-green-600 hover:text-green-700" />
-              </Button>
-            </Link>
+            {contactMethods.whatsapp && (
+              <Link href={contactMethods.whatsapp} target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  aria-label="WhatsApp" 
+                  className="hover:bg-green-50 hover:border-green-200 dark:hover:bg-green-950 dark:hover:border-green-800 transition-all duration-200 hover:scale-110"
+                >
+                  <WhatsAppIcon className="h-5 w-5 text-green-600 hover:text-green-700" />
+                </Button>
+              </Link>
+            )}
           </div>
         </motion.div>
       </div>
