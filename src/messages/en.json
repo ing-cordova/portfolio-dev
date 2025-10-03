@@ -9,8 +9,8 @@
   },
   "About": {
     "title": "About Me",
-    "paragraph1": "Hello! I'm Andrés, a developer passionate about creating robust and efficient technological solutions. My journey into the world of code began with a desire to build things that not only work well but also provide an exceptional user experience.",
-    "paragraph2": "I specialize in the JavaScript and Python ecosystems, moving fluently between the frontend with React and the backend with Django or Node.js. When I'm not programming, you'll find me exploring new hiking trails or immersed in a good science fiction book.",
+    "paragraph1": "Systems Engineer & Full Stack Developer with 2.5+ years of experience designing and implementing scalable software solutions. Skilled in backend (Java, Node.js, Python, DJango PHP), frontend (Vue3, React, TypeScript), and databases (PostgreSQL, MySQL, MongoDB). Proficient in Docker, Git, CI/CD, and Linux.",
+    "paragraph2": "Strong background in software architecture, microservices, and deployment. Bilingual: English & Spanish. Seeking remote opportunities to contribute to innovative and impactful projects.",
     "cta": "Ready to collaborate?",
     "cta_pharagraph": "Always open to new projects and opportunities"
   },
@@ -52,22 +52,22 @@
     "title": "Work Experience",
     "items": [
       {
-        "date": "2021 - Present",
-        "title": "Full Stack Developer",
-        "company": "Tech Solutions Inc.",
-        "description": "Developing and maintaining full-stack web applications using React, Node.js, and PostgreSQL. Led the migration of a monolithic API to a microservices architecture."
+        "date": "2024 - Hoy",
+        "title": "Software Developer",
+        "company": "Secretaría de Innovación de la Presidencia, El Salvador.",
+        "description": "Developing innovative applications for different government portfolios, implementing new, scalable technologies."
       },
       {
-        "date": "2019 - 2021",
-        "title": "Frontend Developer",
-        "company": "Creative Minds LLC",
-        "description": "Creating interactive and responsive user interfaces for high-profile clients. Optimized performance and improved user experience across multiple projects."
+        "date": "2023 - 2024",
+        "title": "Backend Developer",
+        "company": "Techy-We",
+        "description": "I participated in projects for international companies in the banking sector, implementing scalable and more secure architectures on the backend, as well as effective communication between colleagues from different countries, todeliver a quality product."
       },
       {
-        "date": "2018 - 2019",
-        "title": "Junior Developer",
-        "company": "Innovate Startups",
-        "description": "Assisted in web application development, bug fixing, and collaborated in an agile team to deliver new features."
+        "date": "2023 - 2023",
+        "title": "Application Development Trainee",
+        "company": "Telus International Digital Solutions",
+        "description": "As a software development intern, collaborating with large teams, I learned backend, frontend, and devops technologies, preparing us for internal company projects and professional skill development, as well as good communication with product owners."
       }
     ]
   },
