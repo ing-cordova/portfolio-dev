@@ -103,6 +103,33 @@ body::before {
   background-size: 200% 200% !important;
 }
 
+@keyframes gradient-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  background: linear-gradient(45deg, #2563eb, #9333ea, #3b82f6, #a855f7, #6366f1, #2563eb);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  animation: gradient-border 3s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
 /* Smooth transitions for all interactive elements */
 a, button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
