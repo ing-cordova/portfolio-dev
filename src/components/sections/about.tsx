@@ -5,9 +5,11 @@ import { useTranslations } from "@/components/IntlProvider"
 import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage, Card, CardContent } from "@/components/ui"
 import { Code2, Coffee, MapPin, Heart } from "lucide-react"
+import { useState } from "react"
 
 export function About() {
   const t = useTranslations("About")
+  const [isLiked, setIsLiked] = useState(false)
 
   const stats = [
     { icon: <Code2 className="w-6 h-6" />, label: t("stats.projects"), value: "10+" },
@@ -162,8 +164,28 @@ export function About() {
                         {t("cta_pharagraph")}
                       </p>
                     </div>
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
-                      <Heart className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-200" />
+                    <div 
+                      className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200 cursor-pointer"
+                      onClick={() => setIsLiked(!isLiked)}
+                    >
+                      <motion.div
+                        animate={isLiked ? {
+                          scale: [1, 1.2, 1],
+                        } : { scale: 1 }}
+                        transition={{ 
+                          duration: 0.4,
+                          ease: "easeOut"
+                        }}
+                      >
+                        <Heart 
+                          className={`w-6 h-6 transition-colors duration-300 ${
+                            isLiked 
+                              ? 'text-red-500 fill-red-500' 
+                              : 'text-primary group-hover:scale-110 transition-transform duration-200'
+                          }`}
+                          fill={isLiked ? 'currentColor' : 'none'}
+                        />
+                      </motion.div>
                     </div>
                   </div>
                 </motion.div>
