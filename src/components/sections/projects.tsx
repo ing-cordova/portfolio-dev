@@ -5,8 +5,8 @@ import { useTranslations } from "@/components/IntlProvider"
 import { motion } from "framer-motion"
 import { ProjectCard } from "@/components/shared/project-card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Filter, Grid, List } from "lucide-react"
+
+import { Filter, Grid, List, ChevronDown, Search, Check } from "lucide-react"
 import { useState } from "react"
 import { SmoothScroll } from "@/components/shared/smooth-scroll"
 
@@ -24,12 +24,30 @@ export function Projects() {
   const t = useTranslations("Projects")
   const [selectedFilter, setSelectedFilter] = useState<string>("all")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+
   
   // Obtenemos los proyectos del archivo de traducción usando la función raw
   const projectItems = (t.raw("items") as ProjectItem[]) || [];
 
-  // Extraer tags únicos para filtros
-  const allTags = Array.from(new Set(projectItems.flatMap(project => project.tags)))
+  // Extraer tags únicos con contadores
+  const tagCounts = projectItems.reduce((acc, project) => {
+    project.tags.forEach(tag => {
+      acc[tag] = (acc[tag] || 0) + 1
+    })
+    return acc
+  }, {} as Record<string, number>)
+
+  // Ordenar tags por popularidad (más usados primero)
+  const sortedTags = Object.entries(tagCounts)
+    .sort(([,a], [,b]) => b - a)
+    .map(([tag]) => tag)
+  
+  // Filtrar tags según término de búsqueda
+  const filteredTags = sortedTags.filter(tag => 
+    tag.toLowerCase().includes(searchTerm.toLowerCase())
+  )
   
   // Filtrar proyectos según tag seleccionado
   const filteredProjects = selectedFilter === "all" 
@@ -62,39 +80,139 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Controles de filtro y vista */}
+        {/* Controles de filtro y vista - Dropdown limpio */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12"
         >
-          {/* Filtros por tags */}
-          <div className="flex flex-wrap items-center gap-2">
-            <Filter className="w-4 h-4 text-muted-foreground mr-2" />
-            <Button
-              variant={selectedFilter === "all" ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedFilter("all")}
-              className="transition-all duration-200"
-            >
-              Todos ({projectItems.length})
-            </Button>
-            {allTags.slice(0, 4).map((tag) => {
-              const count = projectItems.filter(p => p.tags.includes(tag)).length
-              return (
+          {/* Dropdown de filtros */}
+          <div className="relative">
+            <div className="flex items-center gap-3">
+              <Filter className="w-4 h-4 text-muted-foreground" />
+              
+              {/* Dropdown Button */}
+              <div className="relative">
                 <Button
-                  key={tag}
-                  variant={selectedFilter === tag ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedFilter(tag)}
-                  className="transition-all duration-200"
+                  variant="outline"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="min-w-[200px] justify-between"
                 >
-                  {tag} ({count})
+                  <span>
+                    {selectedFilter === "all" 
+                      ? `${t("filters.all_technologies")} (${projectItems.length})` 
+                      : `${selectedFilter} (${tagCounts[selectedFilter]})`
+                    }
+                  </span>
+                  <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${
+                    isDropdownOpen ? 'rotate-180' : ''
+                  }`} />
                 </Button>
-              )
-            })}
+
+                {/* Dropdown Content */}
+                {isDropdownOpen && (
+                  <div 
+                    className="absolute top-full mt-2 w-80 border border-border rounded-lg shadow-xl z-50"
+                    style={{ 
+                      backgroundColor: 'hsl(var(--card))',
+                      backdropFilter: 'none'
+                    }}
+                  >
+                    {/* Search Input */}
+                    <div className="p-3 border-b border-border">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <input
+                          type="text"
+                          placeholder={t("filters.search_placeholder")}
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="w-full pl-10 pr-4 py-2 text-sm border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-muted-foreground text-foreground"
+                          style={{ backgroundColor: 'hsl(var(--card))' }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Options List */}
+                    <div className="max-h-60 overflow-y-auto">
+                      {/* Opción "Todas" */}
+                      <button
+                        onClick={() => {
+                          setSelectedFilter("all")
+                          setIsDropdownOpen(false)
+                          setSearchTerm("")
+                        }}
+                        className={`w-full px-4 py-3 text-left hover:bg-muted/80 transition-colors flex items-center justify-between ${
+                          selectedFilter === "all" ? "bg-primary/15 text-primary font-medium" : "text-foreground"
+                        }`}
+                      >
+                        <span className="font-medium">{t("filters.all_technologies")}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-muted-foreground">
+                            {projectItems.length} {projectItems.length !== 1 ? t("filters.projects_count_plural") : t("filters.projects_count")}
+                          </span>
+                          {selectedFilter === "all" && (
+                            <Check className="h-4 w-4 text-primary" />
+                          )}
+                        </div>
+                      </button>
+
+                      {/* Separador */}
+                      <div className="border-b border-border" />
+
+                      {/* Lista de tecnologías filtrada */}
+                      {filteredTags.length > 0 ? (
+                        filteredTags.map((tag) => {
+                          const count = tagCounts[tag]
+                          const isSelected = selectedFilter === tag
+                          
+                          return (
+                            <button
+                              key={tag}
+                              onClick={() => {
+                                setSelectedFilter(tag)
+                                setIsDropdownOpen(false)
+                                setSearchTerm("")
+                              }}
+                              className={`w-full px-4 py-3 text-left hover:bg-muted/80 transition-colors flex items-center justify-between ${
+                                isSelected ? "bg-primary/15 text-primary font-medium" : "text-foreground"
+                              }`}
+                            >
+                              <span className="font-medium">{tag}</span>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-muted-foreground">
+                                  {count} {count !== 1 ? t("filters.projects_count_plural") : t("filters.projects_count")}
+                                </span>
+                                {isSelected && (
+                                  <Check className="h-4 w-4 text-primary" />
+                                )}
+                              </div>
+                            </button>
+                          )
+                        })
+                      ) : (
+                        <div className="px-4 py-6 text-center text-sm text-muted-foreground">
+                          {t("filters.no_results")} &ldquo;{searchTerm}&rdquo;
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Overlay para cerrar dropdown */}
+            {isDropdownOpen && (
+              <div 
+                className="fixed inset-0 z-40" 
+                onClick={() => {
+                  setIsDropdownOpen(false)
+                  setSearchTerm("")
+                }}
+              />
+            )}
           </div>
 
           {/* Toggle vista */}
@@ -104,6 +222,7 @@ export function Projects() {
               size="sm"
               onClick={() => setViewMode("grid")}
               className="px-3"
+              aria-label="Vista en grilla"
             >
               <Grid className="w-4 h-4" />
             </Button>
@@ -112,13 +231,14 @@ export function Projects() {
               size="sm"
               onClick={() => setViewMode("list")}
               className="px-3"
+              aria-label="Vista en lista"
             >
               <List className="w-4 h-4" />
             </Button>
           </div>
         </motion.div>
 
-        {/* Contador de resultados */}
+        {/* Contador de resultados mejorado */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -126,14 +246,30 @@ export function Projects() {
           transition={{ duration: 0.4, delay: 0.3 }}
           className="mb-8"
         >
-          <div className="text-sm text-muted-foreground flex items-center flex-wrap gap-2">
-            <span>
-              {filteredProjects.length} / {projectItems.length} {t("text_showing")}{filteredProjects.length !== 1 ? 's' : ''}
-            </span>
+          <div className="flex items-center justify-between flex-wrap gap-4 p-4 bg-muted/30 rounded-lg border border-border/50">
+            <div className="flex items-center gap-3">
+              <div className="text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">
+                  {filteredProjects.length}
+                </span>
+                {filteredProjects.length !== projectItems.length && (
+                  <span> de {projectItems.length}</span>
+                )} {t("text_showing")}{filteredProjects.length !== 1 ? 's' : ''}
+                {selectedFilter !== "all" && (
+                  <span> con <strong>{selectedFilter}</strong></span>
+                )}
+              </div>
+            </div>
+            
             {selectedFilter !== "all" && (
-              <Badge variant="secondary">
-                {selectedFilter}
-              </Badge>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedFilter("all")}
+                className="text-xs hover:bg-primary/10"
+              >
+                Ver todos
+              </Button>
             )}
           </div>
         </motion.div>

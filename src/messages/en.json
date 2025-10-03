@@ -24,6 +24,13 @@
     "title": "Featured Projects",
     "description": "A selection of my most destacated projects, from robust APIs to elegant interfaces",
     "text_showing": "project",
+    "filters": {
+      "all_technologies": "All technologies",
+      "search_placeholder": "Search technology...",
+      "no_results": "No technologies found matching",
+      "projects_count": "project",
+      "projects_count_plural": "projects"
+    },
     "items": [
       {
         "title": "API with Hexagonal Architecture",

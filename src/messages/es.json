@@ -24,6 +24,13 @@
     "title": "Proyectos Destacados",
     "description": "Una selección de mis proyectos más relevantes, desde APIs robustas hasta interfaces elegantes",
     "text_showing": "proyecto",
+    "filters": {
+      "all_technologies": "Todas las tecnologías",
+      "search_placeholder": "Buscar tecnología...",
+      "no_results": "No se encontraron tecnologías que coincidan con",
+      "projects_count": "proyecto",
+      "projects_count_plural": "proyectos"
+    },
     "items": [
       {
         "title": "API con Arquitectura Hexagonal",
