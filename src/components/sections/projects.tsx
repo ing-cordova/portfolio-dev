@@ -15,8 +15,9 @@ interface ProjectItem {
   description: string;
   image: string;
   tags: string[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
+  status?: 'production' | 'finished' | 'development';
 }
 
 export function Projects() {
@@ -164,6 +165,7 @@ export function Projects() {
                 tags={project.tags}
                 githubUrl={project.githubUrl}
                 liveUrl={project.liveUrl}
+                status={project.status}
               />
             </motion.div>
           ))}
@@ -205,7 +207,7 @@ export function Projects() {
             <SmoothScroll targetId="contact">
               <Button>{t("cta_contact")}</Button>
             </SmoothScroll>
-            <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/ing-cordova" target="_blank" rel="noopener noreferrer">
               <Button variant="outline">{t("cta_git")}</Button>
             </a>
           </div>

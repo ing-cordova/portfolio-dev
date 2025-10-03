@@ -12,16 +12,43 @@ interface ProjectCardProps {
   description: string;
   image: string;
   tags: string[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
+  status?: 'production' | 'finished' | 'development';
 }
 
-export function ProjectCard({ title, description, image, tags, githubUrl, liveUrl }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, tags, githubUrl, liveUrl, status }: ProjectCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageError, setImageError] = useState(false)
   const t = useTranslations()
 
   const getProjectStatus = () => {
+    // Si el usuario especifica un status, usarlo
+    if (status) {
+      const statusConfig = {
+        production: {
+          label: t('ProjectCard.status.production'),
+          icon: <Rocket className="w-3 h-3" />,
+          bgColor: "bg-green-500/95 hover:bg-green-600/95",
+          textColor: "text-white"
+        },
+        finished: {
+          label: t('ProjectCard.status.finished'),
+          icon: <CheckCircle className="w-3 h-3" />,
+          bgColor: "bg-blue-500/95 hover:bg-blue-600/95", 
+          textColor: "text-white"
+        },
+        development: {
+          label: t('ProjectCard.status.development'), 
+          icon: <Wrench className="w-3 h-3" />,
+          bgColor: "bg-orange-500/95 hover:bg-orange-600/95",
+          textColor: "text-white"
+        }
+      }
+      return statusConfig[status]
+    }
+
+    // Lógica automática como fallback
     if (liveUrl) {
       return {
         label: t('ProjectCard.status.production'),
@@ -90,12 +117,14 @@ export function ProjectCard({ title, description, image, tags, githubUrl, liveUr
           
           {/* Overlay con acciones rápidas */}
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-            <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
-              <Button size="sm" variant="secondary" className="backdrop-blur-sm">
-                <Github className="w-4 h-4 mr-2" />
-                {t('ProjectCard.buttons.code')}
-              </Button>
-            </Link>
+            {githubUrl && (
+              <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="secondary" className="backdrop-blur-sm">
+                  <Github className="w-4 h-4 mr-2" />
+                  {t('ProjectCard.buttons.code')}
+                </Button>
+              </Link>
+            )}
             {liveUrl && (
               <Link href={liveUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="backdrop-blur-sm">
@@ -157,12 +186,14 @@ export function ProjectCard({ title, description, image, tags, githubUrl, liveUr
       <CardFooter className="pt-4 border-t border-border/50">
         <div className="flex justify-between items-center w-full">
           <div className="flex gap-2">
-            <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="sm" className="hover:bg-primary/10 transition-colors">
-                <Github className="w-4 h-4 mr-2" />
-                {t('ProjectCard.buttons.code')}
-              </Button>
-            </Link>
+            {githubUrl && (
+              <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm" className="hover:bg-primary/10 transition-colors">
+                  <Github className="w-4 h-4 mr-2" />
+                  {t('ProjectCard.buttons.code')}
+                </Button>
+              </Link>
+            )}
             {liveUrl && (
               <Link href={liveUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="bg-primary hover:bg-primary/90">
