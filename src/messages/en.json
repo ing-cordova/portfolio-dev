@@ -157,9 +157,9 @@
     },
     "project_descriptions": {
       "landing": "Website to promote your business",
-      "webapp": "Custom web system for your company",
+      "webapp": "Web application for your clients and users",
       "ecommerce": "Complete online store to sell products",
-      "admin": "Admin panel to manage your business",
+      "admin": "Internal system for business management",
       "api": "System to connect applications",
       "cms": "Blog or website with content management"
     },
@@ -168,6 +168,7 @@
       "seo": "🔍 Shows up on Google", 
       "analytics": "📊 Visitor statistics",
       "forms": "📝 Contact form",
+      "interactive_forms": "📝 Interactive forms",
       "animations": "✨ Visual effects",
       "cms": "📚 You can edit content",
       "auth": "🔐 User login",
@@ -181,15 +182,18 @@
       "orders": "📋 Order management",
       "admin": "👨‍💼 Admin panel",
       "rest": "🔌 Basic connection",
+      "search": "🔍 Advanced search system",
       "security": "🔑 Advanced security + OAuth",
       "docs": "📖 User manual",
       "backup": "💾 Automatic backup",
       "monitoring": "📈 Reports and alerts",
       "users": "👥 Complete user management",
       "reports": "📊 Advanced reports & analytics",
+      "business_analytics": "📈 Advanced business analytics",
       "notifications": "🔔 Notification system",
       "audit": "📋 Activity logs",
       "roles": "👑 User roles & permissions",
+      "workflows": "⚙️ Workflow automation",
       "blog": "📝 Basic blog system",
       "editor": "✏️ Advanced visual editor",
       "themes": "🎨 Customizable themes & templates",
@@ -280,6 +284,7 @@
         "not_selected": "Not selected"
       },
       "contact_message": "📞 Contact me for a detailed quote",
+      "price_disclaimer": "* This price is exclusively for project development. It does not include production costs such as domains, hosting, SSL certificates, third-party licenses, or other external services.",
       "actions": {
         "copy_quote": "Copy Quote",
         "send_whatsapp": "Send via WhatsApp"

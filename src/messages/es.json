@@ -157,9 +157,9 @@
     },
     "project_descriptions": {
       "landing": "Página web para promocionar tu negocio",
-      "webapp": "Sistema web personalizado para tu empresa",
+      "webapp": "Aplicación web para tus clientes y usuarios",
       "ecommerce": "Tienda online completa para vender productos",
-      "admin": "Panel para administrar tu negocio o empresa",
+      "admin": "Sistema interno para gestión empresarial",
       "api": "Servicio backend y API REST",
       "cms": "Blog o sitio web con gestión de contenido"
     },
@@ -175,6 +175,8 @@
       "database": "🗄️ Guarda información",
       "api": "🔌 Conecta con otros sistemas",
       "realtime": "⚡ Actualizaciones instantáneas",
+      "interactive_forms": "📝 Formularios interactivos",
+      "search": "🔍 Sistema de búsqueda",
       "cart": "🛒 Carrito de compras",
       "payments": "💳 Recibir pagos online",
       "inventory": "📦 Sistema de inventario completo", 
@@ -190,6 +192,8 @@
       "notifications": "🔔 Sistema de notificaciones",
       "audit": "📋 Registro de actividades",
       "roles": "👑 Roles y permisos de usuario",
+      "workflows": "🔄 Flujos de trabajo automatizados",
+      "business_analytics": "📈 Analytics empresarial avanzado",
       "blog": "📝 Sistema de blog básico",
       "editor": "✏️ Editor visual avanzado",
       "themes": "🎨 Temas y plantillas personalizables",
@@ -280,6 +284,7 @@
         "not_selected": "No seleccionado"
       },
       "contact_message": "📞 Contáctame para una cotización detallada",
+      "price_disclaimer": "* Este precio es únicamente por el desarrollo del proyecto. No incluye gastos de producción como dominios, hosting, certificados SSL, licencias de terceros u otros servicios externos.",
       "actions": {
         "copy_quote": "Copiar Cotización",
         "send_whatsapp": "Enviar por WhatsApp"
