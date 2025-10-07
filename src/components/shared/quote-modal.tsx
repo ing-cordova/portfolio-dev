@@ -6,6 +6,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { X, ArrowLeft, ArrowRight, CheckCircle, Copy, MessageCircle } from "lucide-react"
 import { useTranslations } from "@/components/IntlProvider"
+import { 
+  getProjectFeatures, 
+  calculateProjectPrice, 
+  getProjectBasePrice,
+  type ProjectType 
+} from "@/lib/pricing-config"
 
 interface QuoteModalProps {
   isOpen: boolean
@@ -25,41 +31,7 @@ interface Feature {
   price: number
 }
 
-// Funcionalidades por tipo de proyecto (prices only, names come from translations)
-const projectFeaturesConfig = {
-  landing: [
-    { id: 'responsive', price: 0 },
-    { id: 'seo', price: 200 },
-    { id: 'analytics', price: 100 },
-    { id: 'forms', price: 150 },
-    { id: 'animations', price: 300 },
-    { id: 'cms', price: 400 }
-  ],
-  webapp: [
-    { id: 'responsive', price: 0 },
-    { id: 'auth', price: 500 },
-    { id: 'dashboard', price: 600 },
-    { id: 'database', price: 400 },
-    { id: 'api', price: 500 },
-    { id: 'realtime', price: 700 }
-  ],
-  ecommerce: [
-    { id: 'responsive', price: 0 },
-    { id: 'cart', price: 400 },
-    { id: 'payments', price: 600 },
-    { id: 'inventory', price: 500 },
-    { id: 'orders', price: 400 },
-    { id: 'admin', price: 700 }
-  ],
-  api: [
-    { id: 'rest', price: 0 },
-    { id: 'jwt', price: 300 },
-    { id: 'database', price: 400 },
-    { id: 'docs', price: 200 },
-    { id: 'tests', price: 400 },
-    { id: 'monitoring', price: 300 }
-  ]
-}
+// Nota: La configuración de precios ahora está centralizada en /src/lib/pricing-config.ts
 
 const initialState: QuoteState = {
   projectType: '',
@@ -75,13 +47,19 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [isDark, setIsDark] = useState(false)
 
   // Function to get features with translations
-  const getProjectFeatures = (projectType: string): Feature[] => {
-    const config = projectFeaturesConfig[projectType as keyof typeof projectFeaturesConfig] || []
-    return config.map(item => ({
-      id: item.id,
-      name: t(`features.${item.id}`),
-      price: item.price
+  const getProjectFeaturesWithTranslations = (projectType: ProjectType): Feature[] => {
+    const featuresConfig = getProjectFeatures(projectType)
+    return Object.entries(featuresConfig).map(([id, price]) => ({
+      id,
+      name: t(`features.${id}`),
+      price
     }))
+  }
+
+  // Function to get free features for a project type
+  const getFreeFeatures = (projectType: ProjectType): string[] => {
+    const features = getProjectFeaturesWithTranslations(projectType)
+    return features.filter(f => f.price === 0).map(f => f.id)
   }
 
   // Detectar tema actual
@@ -161,49 +139,22 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   const getCurrentFeatures = () => {
     if (!quoteData.projectType) return []
-    return getProjectFeatures(quoteData.projectType)
+    return getProjectFeaturesWithTranslations(quoteData.projectType as ProjectType)
   }
 
   const calculatePrice = () => {
     if (!quoteData.projectType) return { min: 0, max: 0 }
     
-    // Precios base por tipo de proyecto
-    const basePrices = {
-      landing: 500,
-      webapp: 1200,
-      ecommerce: 2000,
-      api: 800
-    }
-    
-    const basePrice = basePrices[quoteData.projectType as keyof typeof basePrices] || 0
-    
-    // Sumar features seleccionadas
-    const featuresPrice = quoteData.features.reduce((total, featureId) => {
-      const feature = getCurrentFeatures().find(f => f.id === featureId)
-      return total + (feature?.price || 0)
-    }, 0)
-    
-    // Multiplicadores por complejidad
-    const complexityMultipliers = {
-      simple: 0.8,
-      medium: 1.0,
-      complex: 1.5
-    }
-    
-    // Multiplicadores por timeline
-    const timelineMultipliers = {
-      rush: 1.5,
-      normal: 1.0,
-      flexible: 0.85
-    }
-    
-    const totalBase = (basePrice + featuresPrice) * 
-                     complexityMultipliers[quoteData.complexity] * 
-                     timelineMultipliers[quoteData.timeline]
+    const priceData = calculateProjectPrice({
+      projectType: quoteData.projectType as ProjectType,
+      selectedFeatures: quoteData.features,
+      complexity: quoteData.complexity,
+      timeline: quoteData.timeline
+    })
     
     return {
-      min: Math.round(totalBase * 0.9),
-      max: Math.round(totalBase * 1.2)
+      min: priceData.min,
+      max: priceData.max
     }
   }
 
@@ -258,7 +209,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed top-16 left-0 right-0 bottom-0 z-[9999] flex items-start justify-center p-4 pt-4 sm:pt-8">
+        <div className="fixed top-10 left-0 right-0 bottom-0 z-[9999] flex items-start justify-center p-4 pt-4 sm:pt-8">
           {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -345,7 +296,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   }}
                 >
                   {/* Step Content */}
-                  <div className="py-2 sm:py-4 max-h-[50vh] sm:max-h-[70vh] md:max-h-none overflow-y-auto md:overflow-y-visible">
+                  <div className="py-2 sm:py-4 max-h-[50vh] sm:max-h-[70vh] md:max-h-[60vh] lg:max-h-[65vh] overflow-y-auto">
                     {step === 1 && (
                       <div className="space-y-4">
                         <h3 
@@ -356,7 +307,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         >
                           {t("step1.title")}
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                           {/* Landing Page */}
                           <div 
                             className="p-6 rounded-lg border-2 hover:border-primary cursor-pointer transition-all group"
@@ -371,7 +322,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               e.currentTarget.style.backgroundColor = isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'
                             }}
                             onClick={() => {
-                              const requiredFeatures = getProjectFeatures('landing').filter(f => f.price === 0).map(f => f.id)
+                              const requiredFeatures = getFreeFeatures('landing')
                               setQuoteData({...quoteData, projectType: 'landing', features: requiredFeatures})
                             }}
                           >
@@ -379,7 +330,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               <div className="text-4xl mb-3">🎯</div>
                               <h4 className="font-semibold mb-2" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>{t('project_types.landing')}</h4>
                               <p className="text-sm" style={{color: isDark ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)'}}>{t('project_descriptions.landing')}</p>
-                              <div className="mt-3 text-primary font-medium">Desde $500</div>
+                              <div className="mt-3 text-primary font-medium">Desde ${getProjectBasePrice('landing')}</div>
                             </div>
                           </div>
 
@@ -397,7 +348,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               e.currentTarget.style.backgroundColor = isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'
                             }}
                             onClick={() => {
-                              const requiredFeatures = getProjectFeatures('webapp').filter(f => f.price === 0).map(f => f.id)
+                              const requiredFeatures = getFreeFeatures('webapp')
                               setQuoteData({...quoteData, projectType: 'webapp', features: requiredFeatures})
                             }}
                           >
@@ -405,7 +356,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               <div className="text-4xl mb-3">⚡</div>
                               <h4 className="font-semibold mb-2" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>{t('project_types.webapp')}</h4>
                               <p className="text-sm" style={{color: isDark ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)'}}>{t('project_descriptions.webapp')}</p>
-                              <div className="mt-3 text-primary font-medium">Desde $1,200</div>
+                              <div className="mt-3 text-primary font-medium">Desde ${getProjectBasePrice('webapp')}</div>
                             </div>
                           </div>
 
@@ -423,7 +374,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               e.currentTarget.style.backgroundColor = isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'
                             }}
                             onClick={() => {
-                              const requiredFeatures = getProjectFeatures('ecommerce').filter(f => f.price === 0).map(f => f.id)
+                              const requiredFeatures = getFreeFeatures('ecommerce')
                               setQuoteData({...quoteData, projectType: 'ecommerce', features: requiredFeatures})
                             }}
                           >
@@ -431,7 +382,33 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               <div className="text-4xl mb-3">🛒</div>
                               <h4 className="font-semibold mb-2" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>{t('project_types.ecommerce')}</h4>
                               <p className="text-sm" style={{color: isDark ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)'}}>{t('project_descriptions.ecommerce')}</p>
-                              <div className="mt-3 text-primary font-medium">Desde $2,000</div>
+                              <div className="mt-3 text-primary font-medium">Desde ${getProjectBasePrice('ecommerce')}</div>
+                            </div>
+                          </div>
+
+                          {/* Panel Administrativo */}
+                          <div 
+                            className="p-6 rounded-lg border-2 hover:border-primary cursor-pointer transition-all group"
+                            style={{
+                              backgroundColor: isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)',
+                              borderColor: isDark ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = isDark ? 'rgb(51, 65, 85)' : 'rgb(243, 244, 246)'
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'
+                            }}
+                            onClick={() => {
+                              const requiredFeatures = getFreeFeatures('admin')
+                              setQuoteData({...quoteData, projectType: 'admin', features: requiredFeatures})
+                            }}
+                          >
+                            <div className="text-center">
+                              <div className="text-4xl mb-3">⚙️</div>
+                              <h4 className="font-semibold mb-2" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>{t('project_types.admin')}</h4>
+                              <p className="text-sm" style={{color: isDark ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)'}}>{t('project_descriptions.admin')}</p>
+                              <div className="mt-3 text-primary font-medium">Desde ${getProjectBasePrice('admin')}</div>
                             </div>
                           </div>
 
@@ -449,7 +426,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               e.currentTarget.style.backgroundColor = isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'
                             }}
                             onClick={() => {
-                              const requiredFeatures = getProjectFeatures('api').filter(f => f.price === 0).map(f => f.id)
+                              const requiredFeatures = getFreeFeatures('api')
                               setQuoteData({...quoteData, projectType: 'api', features: requiredFeatures})
                             }}
                           >
@@ -457,7 +434,33 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               <div className="text-4xl mb-3">🔌</div>
                               <h4 className="font-semibold mb-2" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>{t('project_types.api')}</h4>
                               <p className="text-sm" style={{color: isDark ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)'}}>{t('project_descriptions.api')}</p>
-                              <div className="mt-3 text-primary font-medium">Desde $800</div>
+                              <div className="mt-3 text-primary font-medium">Desde ${getProjectBasePrice('api')}</div>
+                            </div>
+                          </div>
+
+                          {/* CMS/Sistema de Contenido */}
+                          <div 
+                            className="p-6 rounded-lg border-2 hover:border-primary cursor-pointer transition-all group"
+                            style={{
+                              backgroundColor: isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)',
+                              borderColor: isDark ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = isDark ? 'rgb(51, 65, 85)' : 'rgb(243, 244, 246)'
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'
+                            }}
+                            onClick={() => {
+                              const requiredFeatures = getFreeFeatures('cms')
+                              setQuoteData({...quoteData, projectType: 'cms', features: requiredFeatures})
+                            }}
+                          >
+                            <div className="text-center">
+                              <div className="text-4xl mb-3">📝</div>
+                              <h4 className="font-semibold mb-2" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>{t('project_types.cms')}</h4>
+                              <p className="text-sm" style={{color: isDark ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)'}}>{t('project_descriptions.cms')}</p>
+                              <div className="mt-3 text-primary font-medium">Desde ${getProjectBasePrice('cms')}</div>
                             </div>
                           </div>
                         </div>
@@ -516,6 +519,8 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             <p className="text-muted-foreground text-center mb-4">
                               <span dangerouslySetInnerHTML={{ __html: t('step2.select_features').replace('{type}', t(`project_types.${quoteData.projectType}`)) }} />
                             </p>
+                            
+                            {/* Contenedor para funcionalidades */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                               {getCurrentFeatures().map((feature) => {
                                 const isSelected = quoteData.features.includes(feature.id)
@@ -545,10 +550,10 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                                       }
                                     }}
                                   >
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex items-center space-x-2">
+                                    <div className="flex items-start justify-between gap-3">
+                                      <div className="flex items-start space-x-3 flex-1 min-w-0">
                                         <div 
-                                          className="w-4 h-4 rounded border-2 flex items-center justify-center"
+                                          className="w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5"
                                           style={{
                                             backgroundColor: (isSelected || isRequired) ? 'rgb(59, 130, 246)' : 'transparent',
                                             borderColor: (isSelected || isRequired) 
@@ -560,21 +565,23 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                                             <div className="w-2 h-2 bg-white rounded-sm"></div>
                                           )}
                                         </div>
-                                        <span className="font-medium" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>
-                                          {feature.name}
-                                        </span>
+                                        <div className="flex-1 min-w-0">
+                                          <span className="font-medium text-sm block leading-relaxed" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>
+                                            {feature.name}
+                                          </span>
+                                          {isRequired && (
+                                            <div className="text-xs text-muted-foreground mt-1">Obligatorio</div>
+                                          )}
+                                        </div>
                                       </div>
-                                      <div className="text-right">
-                                        <span className={`text-sm font-medium ${
+                                      <div className="text-right flex-shrink-0">
+                                        <span className={`text-sm font-medium block ${
                                           feature.price === 0 
                                             ? 'text-green-600 dark:text-green-400' 
                                             : 'text-blue-600 dark:text-blue-400'
                                         }`}>
                                           {feature.price === 0 ? 'Incluido' : `+$${feature.price}`}
                                         </span>
-                                        {isRequired && (
-                                          <div className="text-xs text-muted-foreground">Obligatorio</div>
-                                        )}
                                       </div>
                                     </div>
                                   </div>
