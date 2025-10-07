@@ -10,6 +10,7 @@ import {
   getProjectFeatures, 
   calculateProjectPrice, 
   getProjectBasePrice,
+  ADDITIONAL_SERVICES,
   type ProjectType 
 } from "@/lib/pricing-config"
 
@@ -23,6 +24,7 @@ interface QuoteState {
   features: string[]
   complexity: 'simple' | 'medium' | 'complex'
   timeline: 'rush' | 'normal' | 'flexible'
+  additionalServices: string[]
 }
 
 interface Feature {
@@ -37,7 +39,8 @@ const initialState: QuoteState = {
   projectType: '',
   features: [],
   complexity: 'medium',
-  timeline: 'normal'
+  timeline: 'normal',
+  additionalServices: []
 }
 
 export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
@@ -95,7 +98,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     }
   }, [isOpen])
 
-  const totalSteps = 4
+  const totalSteps = 5
 
   const handleNext = () => {
     if (step < totalSteps) {
@@ -137,9 +140,26 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     }))
   }
 
+  const toggleAdditionalService = (serviceId: string) => {
+    setQuoteData(prev => ({
+      ...prev,
+      additionalServices: prev.additionalServices.includes(serviceId)
+        ? prev.additionalServices.filter(s => s !== serviceId)
+        : [...prev.additionalServices, serviceId]
+    }))
+  }
+
   const getCurrentFeatures = () => {
     if (!quoteData.projectType) return []
     return getProjectFeaturesWithTranslations(quoteData.projectType as ProjectType)
+  }
+
+  const getAdditionalServicesWithTranslations = (): Feature[] => {
+    return Object.entries(ADDITIONAL_SERVICES).map(([id, price]) => ({
+      id,
+      name: t(`additional_services.${id}`),
+      price: price as number
+    }))
   }
 
   const calculatePrice = () => {
@@ -149,7 +169,8 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       projectType: quoteData.projectType as ProjectType,
       selectedFeatures: quoteData.features,
       complexity: quoteData.complexity,
-      timeline: quoteData.timeline
+      timeline: quoteData.timeline,
+      additionalServices: quoteData.additionalServices
     })
     
     return {
@@ -161,16 +182,21 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const generateQuoteText = () => {
     const price = calculatePrice()
     const selectedFeatures = getCurrentFeatures().filter(f => quoteData.features.includes(f.id))
+    const selectedServices = getAdditionalServicesWithTranslations().filter(s => quoteData.additionalServices.includes(s.id))
 
     const baseMessage = t('messages.whatsapp_message')
     const featuresText = t('messages.selected_features') + '\n' + selectedFeatures.map(f => `→ ${f.name.replace(/[📱🔐📊🗄️🔌⚡📦💳📋👨‍💼🔍📈📖🧪📞💬📧📝✨📚🛒🎯]/g, '')}${f.price > 0 ? ` (+$${f.price})` : ` ${t('messages.included')}`}`).join('\n')
+    
+    const servicesText = selectedServices.length > 0 
+      ? '\n\n🔧 SERVICIOS ADICIONALES:\n' + selectedServices.map(s => `→ ${s.name.replace(/[🌐⚙️🖥️🔒📧💻🔧🔍📚💾]/g, '')} (+$${s.price})`).join('\n')
+      : ''
     
     return baseMessage
       .replace('{type}', t(`project_types.${quoteData.projectType}`))
       .replace('{projectType}', t(`project_types.${quoteData.projectType}`))
       .replace('{complexity}', t(`complexity.${quoteData.complexity}`))
       .replace('{timeline}', t(`timeline.${quoteData.timeline}`))
-      .replace('{featuresText}', featuresText)
+      .replace('{featuresText}', featuresText + servicesText)
       .replace('{total}', '$' + price.max.toLocaleString())
   }
 
@@ -707,10 +733,101 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
                     {step === 4 && (
                       <div className="space-y-4">
+                        <h3 className="text-lg font-semibold mb-4" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>
+                          {t("step4.title")}
+                        </h3>
+                        <p className="text-muted-foreground text-center mb-6">
+                          {t("step4.optional")}
+                        </p>
+                        
+                        {/* Contenedor para servicios adicionales */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {getAdditionalServicesWithTranslations().map((service) => {
+                            const isSelected = quoteData.additionalServices.includes(service.id)
+                            
+                            return (
+                              <div
+                                key={service.id}
+                                onClick={() => toggleAdditionalService(service.id)}
+                                className={`p-4 rounded-lg border-2 transition-all cursor-pointer`}
+                                style={{
+                                  backgroundColor: isSelected 
+                                    ? (isDark ? 'rgb(30, 58, 138)' : 'rgb(239, 246, 255)') 
+                                    : (isDark ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)'),
+                                  borderColor: isSelected 
+                                    ? 'rgb(59, 130, 246)' 
+                                    : (isDark ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)')
+                                }}
+                                onMouseEnter={(e) => {
+                                  if (!isSelected) {
+                                    e.currentTarget.style.borderColor = 'rgb(147, 197, 253)'
+                                  }
+                                }}
+                                onMouseLeave={(e) => {
+                                  if (!isSelected) {
+                                    e.currentTarget.style.borderColor = isDark ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)'
+                                  }
+                                }}
+                              >
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex items-start space-x-3 flex-1 min-w-0">
+                                    <div 
+                                      className="w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5"
+                                      style={{
+                                        backgroundColor: isSelected ? 'rgb(59, 130, 246)' : 'transparent',
+                                        borderColor: isSelected 
+                                          ? 'rgb(59, 130, 246)' 
+                                          : (isDark ? 'rgb(107, 114, 128)' : 'rgb(209, 213, 219)')
+                                      }}
+                                    >
+                                      {isSelected && (
+                                        <div className="w-2 h-2 bg-white rounded-sm"></div>
+                                      )}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <span className="font-medium text-sm block leading-relaxed" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>
+                                        {service.name}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className="text-right flex-shrink-0">
+                                    <span className="text-sm font-medium block text-blue-600 dark:text-blue-400">
+                                      +${service.price}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                        
+                        {quoteData.additionalServices.length > 0 && (
+                          <div 
+                            className="mt-4 p-3 rounded-lg border"
+                            style={{
+                              backgroundColor: isDark ? 'rgb(30, 58, 138)' : 'rgb(239, 246, 255)',
+                              borderColor: isDark ? 'rgb(59, 130, 246)' : 'rgb(147, 197, 253)'
+                            }}
+                          >
+                            <p 
+                              className="text-sm text-center"
+                              style={{
+                                color: isDark ? 'rgb(191, 219, 254)' : 'rgb(30, 58, 138)'
+                              }}
+                            >
+                              ✅ {quoteData.additionalServices.length} servicios adicionales seleccionados
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {step === 5 && (
+                      <div className="space-y-4">
                         <div className="text-center">
                           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                           <h3 className="text-lg font-semibold mb-4" style={{color: isDark ? 'rgb(255, 255, 255)' : 'rgb(17, 24, 39)'}}>
-                            {t("step4.title")}
+                            {t("step5.title")}
                           </h3>
                         </div>
                         <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
@@ -719,17 +836,20 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               ${calculatePrice().min.toLocaleString()} - ${calculatePrice().max.toLocaleString()} USD
                             </div>
                             <p className="text-muted-foreground">
-                              {t('step4.estimated_quote')}
+                              {t('step5.estimated_quote')}
                             </p>
                             <div className="text-sm text-muted-foreground space-y-1">
-                              <div>• {t('step4.project_summary.type')} {quoteData.projectType ? t(`project_types.${quoteData.projectType}`) : t('step4.project_summary.not_selected')}</div>
-                              <div>• {t('step4.project_summary.features')} {quoteData.features.length} {t('step4.project_summary.features_selected')}</div>
-                              <div>• {t('step4.project_summary.complexity')} {t(`complexity.${quoteData.complexity}`)}</div>
-                              <div>• {t('step4.project_summary.timeline')} {t(`timeline.${quoteData.timeline}`)}</div>
+                              <div>• {t('step5.project_summary.type')} {quoteData.projectType ? t(`project_types.${quoteData.projectType}`) : t('step5.project_summary.not_selected')}</div>
+                              <div>• {t('step5.project_summary.features')} {quoteData.features.length} {t('step5.project_summary.features_selected')}</div>
+                              <div>• {t('step5.project_summary.complexity')} {t(`complexity.${quoteData.complexity}`)}</div>
+                              <div>• {t('step5.project_summary.timeline')} {t(`timeline.${quoteData.timeline}`)}</div>
+                              {quoteData.additionalServices.length > 0 && (
+                                <div>• Servicios adicionales: {quoteData.additionalServices.length} seleccionados</div>
+                              )}
                             </div>
                             <div className="pt-4 border-t border-blue-200 dark:border-blue-700 space-y-3">
                               <p className="text-sm text-muted-foreground">
-                                {t('step4.contact_message')}
+                                {t('step5.contact_message')}
                               </p>
                               
                               {/* Botones de Acción */}
@@ -740,7 +860,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                                   className="flex-1 flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 >
                                   <Copy className="w-4 h-4" />
-                                  {t('step4.actions.copy_quote')}
+                                  {t('step5.actions.copy_quote')}
                                 </Button>
                                 
                                 <Button
@@ -748,7 +868,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                                   className="flex-1 flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white"
                                 >
                                   <MessageCircle className="w-4 h-4" />
-                                  {t('step4.actions.send_whatsapp')}
+                                  {t('step5.actions.send_whatsapp')}
                                 </Button>
                               </div>
                               

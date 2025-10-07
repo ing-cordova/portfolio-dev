@@ -10,12 +10,12 @@
 
 // Precios base por tipo de proyecto
 export const BASE_PRICES = {
-  landing: 250,
-  webapp: 600, 
-  ecommerce: 1000,
-  admin: 1200,
-  api: 400,
-  cms: 800
+  landing: 350,
+  webapp: 1500, 
+  ecommerce: 1800,
+  admin: 2000,
+  api: 800,
+  cms: 1500
 } as const
 
 // Precios de funcionalidades adicionales por tipo de proyecto
@@ -39,7 +39,7 @@ export const FEATURE_PRICES = {
   ecommerce: {
     responsive: 0,      // Siempre incluido
     cart: 200,         // Carrito de compras
-    payments: 300,     // Recibir pagos online
+    payments: 400,     // Recibir pagos online
     inventory: 250,    // Control de productos
     orders: 200,       // Gestión de pedidos
     admin: 350         // Panel administrativo
@@ -47,17 +47,17 @@ export const FEATURE_PRICES = {
   admin: {
     responsive: 0,      // Siempre incluido
     database: 0,       // Base de datos (incluido - esencial)
-    auth: 0,           // Login básico (incluido)
+    auth: 250,           // Login básico (incluido)
     dashboard: 200,    // Panel de control principal
     users: 300,        // Gestión completa de usuarios
-    reports: 400,      // Reportes y estadísticas avanzadas
+    reports: 350,      // Reportes y estadísticas avanzadas
     notifications: 250, // Sistema de notificaciones
     audit: 300,        // Registro de actividades
     inventory: 400,    // Sistema de inventario
     security: 350,     // Seguridad avanzada + OAuth
     api: 300,          // API REST para integraciones
     backup: 250,       // Respaldos automáticos
-    roles: 350         // Sistema de roles y permisos
+    roles: 400         // Sistema de roles y permisos
   },
   api: {
     rest: 0,           // Conexión básica (incluido)
@@ -70,7 +70,7 @@ export const FEATURE_PRICES = {
   cms: {
     responsive: 0,      // Siempre incluido
     blog: 0,           // Sistema de blog básico (incluido)
-    auth: 0,           // Login de usuarios (incluido)
+    auth: 250,           // Login de usuarios (incluido)
     editor: 200,       // Editor visual avanzado
     seo: 150,          // SEO integrado y optimizado
     themes: 300,       // Temas y plantillas personalizables
@@ -93,7 +93,7 @@ export const COMPLEXITY_MULTIPLIERS = {
 
 // Multiplicadores por timeline
 export const TIMELINE_MULTIPLIERS = {
-  rush: 1.5,      // +50% - Lo necesito YA
+  rush: 1.6,      // +60% - Lo necesito YA
   normal: 1.0,    // Precio base - Tiempo normal
   flexible: 0.85  // -15% - Sin prisa
 } as const
@@ -102,6 +102,22 @@ export const TIMELINE_MULTIPLIERS = {
 export const PRICE_RANGE_CONFIG = {
   minMultiplier: 0.9,  // El precio mínimo es 90% del calculado
   maxMultiplier: 1.2   // El precio máximo es 120% del calculado
+} as const
+
+// Servicios adicionales (dominio, hosting, instalación, etc.)
+export const ADDITIONAL_SERVICES = {
+  domain_purchase: 30,      // Compra de dominio (.com)
+  domain_setup: 25,         // Configuración de dominio
+  hosting_setup: 50,        // Configuración de hosting
+  ssl_setup: 35,            // Instalación de SSL
+  email_setup: 40,          // Configuración de emails corporativos
+  local_installation: 100,   // Instalación en servidor local
+  maintenance_1month: 150,  // Mantenimiento 1 mes
+  maintenance_3months: 400, // Mantenimiento 3 meses
+  maintenance_6months: 750, // Mantenimiento 6 meses
+  seo_optimization: 200,    // Optimización SEO avanzada
+  training: 100,            // Capacitación de uso
+  backup_setup: 60          // Configuración de respaldos automáticos
 } as const
 
 // Tipo para los tipos de proyecto válidos
@@ -123,10 +139,11 @@ export interface PriceCalculationParams {
   selectedFeatures: string[]
   complexity: keyof typeof COMPLEXITY_MULTIPLIERS
   timeline: keyof typeof TIMELINE_MULTIPLIERS
+  additionalServices?: string[]
 }
 
 export function calculateProjectPrice(params: PriceCalculationParams) {
-  const { projectType, selectedFeatures, complexity, timeline } = params
+  const { projectType, selectedFeatures, complexity, timeline, additionalServices = [] } = params
   
   // Precio base del tipo de proyecto
   const basePrice = BASE_PRICES[projectType] || 0
@@ -137,21 +154,29 @@ export function calculateProjectPrice(params: PriceCalculationParams) {
     return total + featurePrice
   }, 0)
   
-  // Aplicar multiplicadores
+  // Sumar precios de servicios adicionales
+  const servicesPrice = additionalServices.reduce((total, serviceId) => {
+    const servicePrice = ADDITIONAL_SERVICES[serviceId as keyof typeof ADDITIONAL_SERVICES] || 0
+    return total + servicePrice
+  }, 0)
+  
+  // Aplicar multiplicadores solo al precio base + funcionalidades (no a servicios)
   const complexityMultiplier = COMPLEXITY_MULTIPLIERS[complexity]
   const timelineMultiplier = TIMELINE_MULTIPLIERS[timeline]
   
-  const totalBase = (basePrice + featuresPrice) * complexityMultiplier * timelineMultiplier
+  const projectTotal = (basePrice + featuresPrice) * complexityMultiplier * timelineMultiplier
+  const finalTotal = projectTotal + servicesPrice
   
   return {
     basePrice,
     featuresPrice,
+    servicesPrice,
     subtotal: basePrice + featuresPrice,
     complexityMultiplier,
     timelineMultiplier,
-    total: Math.round(totalBase),
-    min: Math.round(totalBase * PRICE_RANGE_CONFIG.minMultiplier),
-    max: Math.round(totalBase * PRICE_RANGE_CONFIG.maxMultiplier)
+    total: Math.round(finalTotal),
+    min: Math.round(finalTotal * PRICE_RANGE_CONFIG.minMultiplier),
+    max: Math.round(finalTotal * PRICE_RANGE_CONFIG.maxMultiplier)
   }
 }
 
