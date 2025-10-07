@@ -6,7 +6,7 @@
     "cta_contact": "Contacto",
     "cta_cv": "Descargar CV",
     "cv_tooltip": "Descarga mi CV en PDF",
-    "quote_button": "Cotizar"
+    "quote_button": "Cotizar mi proyecto"
   },
   "About": {
     "title": "Sobre Mí",
@@ -146,39 +146,55 @@
     "next": "Siguiente",
     "contact": "Contactar",
     "project_types": {
-      "landing": "Landing Page",
-      "webapp": "Web App",
-      "ecommerce": "E-commerce", 
-      "api": "API/Backend"
+      "landing": "Página Promocional",
+      "webapp": "Sistema Web",
+      "ecommerce": "Tienda Online",
+      "admin": "Panel Administrativo", 
+      "api": "API/Backend",
+      "cms": "Sistema de Contenido (CMS)"
     },
     "project_descriptions": {
-      "landing": "Página promocional enfocada en conversión",
-      "webapp": "Aplicación web interactiva completa",
-      "ecommerce": "Tienda online con carrito y pagos",
-      "api": "Servicio backend y API REST"
+      "landing": "Página web para promocionar tu negocio",
+      "webapp": "Sistema web personalizado para tu empresa",
+      "ecommerce": "Tienda online completa para vender productos",
+      "admin": "Panel para administrar tu negocio o empresa",
+      "api": "Servicio backend y API REST",
+      "cms": "Blog o sitio web con gestión de contenido"
     },
     "features": {
-      "responsive": "📱 Diseño Responsive",
-      "seo": "🔍 SEO Optimizado", 
-      "analytics": "📊 Google Analytics",
-      "forms": "📝 Formularios de Contacto",
-      "animations": "✨ Animaciones CSS",
-      "cms": "📚 CMS Simple",
-      "auth": "🔐 Sistema de Autenticación",
-      "dashboard": "📊 Dashboard/Panel Admin",
-      "database": "🗄️ Base de Datos",
-      "api": "🔌 API REST",
-      "realtime": "⚡ Tiempo Real (WebSockets)",
-      "cart": "🛒 Carrito de Compras",
-      "payments": "💳 Pasarela de Pagos",
-      "inventory": "📦 Gestión de Inventario", 
-      "orders": "📋 Sistema de Órdenes",
-      "admin": "👨‍💼 Panel de Administración",
-      "rest": "🔌 API REST",
-      "jwt": "🔐 Autenticación JWT",
-      "docs": "📖 Documentación API",
-      "tests": "🧪 Tests Automatizados",
-      "monitoring": "📈 Monitoreo y Logs"
+      "responsive": "📱 Se adapta a celulares",
+      "seo": "🔍 Aparece en Google", 
+      "analytics": "📊 Estadísticas de visitantes",
+      "forms": "📝 Formulario de contacto",
+      "animations": "✨ Efectos visuales",
+      "cms": "📚 Puedes editar contenido",
+      "auth": "🔐 Login de usuarios",
+      "dashboard": "📊 Panel de control",
+      "database": "🗄️ Guarda información",
+      "api": "🔌 Conecta con otros sistemas",
+      "realtime": "⚡ Actualizaciones instantáneas",
+      "cart": "🛒 Carrito de compras",
+      "payments": "💳 Recibir pagos online",
+      "inventory": "📦 Sistema de inventario completo", 
+      "orders": "📋 Gestión de pedidos",
+      "admin": "👨‍💼 Panel administrativo",
+      "rest": "🔌 Conexión básica",
+      "security": "🔑 Seguridad avanzada + OAuth",
+      "docs": "📖 Manual de uso",
+      "backup": "💾 Respaldo automático",
+      "monitoring": "📈 Reportes y alertas",
+      "users": "👥 Gestión completa de usuarios",
+      "reports": "📊 Reportes y estadísticas avanzadas",
+      "notifications": "🔔 Sistema de notificaciones",
+      "audit": "📋 Registro de actividades",
+      "roles": "👑 Roles y permisos de usuario",
+      "blog": "📝 Sistema de blog básico",
+      "editor": "✏️ Editor visual avanzado",
+      "themes": "🎨 Temas y plantillas personalizables",
+      "media": "🖼️ Biblioteca de medios y archivos",
+      "plugins": "🔌 Sistema de plugins y extensiones",
+      "comments": "💬 Sistema de comentarios",
+      "multilang": "🌍 Soporte multilenguaje"
     },
     "complexity": {
       "simple": "Simple",
@@ -186,14 +202,14 @@
       "complex": "Complejo"
     },
     "complexity_descriptions": {
-      "simple": "🟢 Simple - Funcionalidades básicas",
-      "medium": "🟡 Medio - Funcionalidades estándar",
-      "complex": "🔴 Complejo - Funcionalidades avanzadas"
+      "simple": "🟢 Básico - Lo esencial para funcionar (-20%)",
+      "medium": "🟡 Estándar - Funcionalidades completas",
+      "complex": "🔴 Avanzado - Muchas funciones especiales (+50%)"
     },
     "timeline_descriptions": {
-      "rush": "⚡ Urgente - 1-2 semanas (+50%)",
-      "normal": "📅 Normal - 3-4 semanas",
-      "flexible": "🗓️ Flexible - 5+ semanas (-15%)"
+      "rush": "⚡ Lo necesito YA - 1-2 semanas (+50%)",
+      "normal": "📅 Tiempo normal - 2-4 semanas",
+      "flexible": "🗓️ Sin prisa - Más de 4 semanas (-15%)"
     },
     "timeline": {
       "rush": "Urgente (1-2 semanas)",

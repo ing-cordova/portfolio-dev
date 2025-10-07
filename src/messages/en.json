@@ -6,7 +6,7 @@
     "cta_contact": "Contact",
     "cta_cv": "Download CV",
     "cv_tooltip": "Download my CV in PDF",
-    "quote_button": "Get Quote"
+    "quote_button": "Quote my project"
   },
   "About": {
     "title": "About Me",
@@ -146,39 +146,55 @@
     "next": "Next",
     "contact": "Contact",
     "project_types": {
-      "landing": "Landing Page",
-      "webapp": "Web App", 
-      "ecommerce": "E-commerce",
-      "api": "API/Backend"
+      "landing": "Business Website",
+      "webapp": "Web System",
+      "ecommerce": "Online Store",
+      "admin": "Admin Panel", 
+      "api": "System Connection",
+      "cms": "Content Management System"
     },
     "project_descriptions": {
-      "landing": "Promotional page focused on conversion",
-      "webapp": "Complete interactive web application",
-      "ecommerce": "Online store with cart and payments",
-      "api": "Backend service and REST API"
+      "landing": "Website to promote your business",
+      "webapp": "Custom web system for your company",
+      "ecommerce": "Complete online store to sell products",
+      "admin": "Admin panel to manage your business",
+      "api": "System to connect applications",
+      "cms": "Blog or website with content management"
     },
     "features": {
-      "responsive": "📱 Responsive Design",
-      "seo": "🔍 SEO Optimized",
-      "analytics": "📊 Google Analytics",
-      "forms": "📝 Contact Forms",
-      "animations": "✨ CSS Animations",
-      "cms": "📚 Simple CMS",
-      "auth": "🔐 Authentication System",
-      "dashboard": "📊 Dashboard/Admin Panel",
-      "database": "🗄️ Database",
-      "api": "🔌 REST API",
-      "realtime": "⚡ Real Time (WebSockets)",
-      "cart": "🛒 Shopping Cart",
-      "payments": "💳 Payment Gateway",
-      "inventory": "📦 Inventory Management",
-      "orders": "📋 Order System",
-      "admin": "👨‍💼 Admin Panel",
-      "rest": "🔌 REST API",
-      "jwt": "🔐 JWT Authentication",
-      "docs": "📖 API Documentation",
-      "tests": "🧪 Automated Tests",
-      "monitoring": "📈 Monitoring & Logs"
+      "responsive": "📱 Works on mobile",
+      "seo": "🔍 Shows up on Google", 
+      "analytics": "📊 Visitor statistics",
+      "forms": "📝 Contact form",
+      "animations": "✨ Visual effects",
+      "cms": "📚 You can edit content",
+      "auth": "🔐 User login",
+      "dashboard": "📊 Control panel",
+      "database": "🗄️ Saves information",
+      "api": "🔌 Connects with other systems",
+      "realtime": "⚡ Instant updates",
+      "cart": "🛒 Shopping cart",
+      "payments": "💳 Accept online payments",
+      "inventory": "📦 Complete inventory system", 
+      "orders": "📋 Order management",
+      "admin": "👨‍💼 Admin panel",
+      "rest": "🔌 Basic connection",
+      "security": "� Advanced security + OAuth",
+      "docs": "📖 User manual",
+      "backup": "💾 Automatic backup",
+      "monitoring": "📈 Reports and alerts",
+      "users": "👥 Complete user management",
+      "reports": "📊 Advanced reports & analytics",
+      "notifications": "🔔 Notification system",
+      "audit": "📋 Activity logs",
+      "roles": "👑 User roles & permissions",
+      "blog": "📝 Basic blog system",
+      "editor": "✏️ Advanced visual editor",
+      "themes": "🎨 Customizable themes & templates",
+      "media": "🖼️ Media library & file management",
+      "plugins": "🔌 Plugin & extension system",
+      "comments": "💬 Comment system",
+      "multilang": "🌍 Multi-language support"
     },
     "complexity": {
       "simple": "Simple",
@@ -186,14 +202,14 @@
       "complex": "Complex"
     },
     "complexity_descriptions": {
-      "simple": "🟢 Simple - Basic functionalities",
-      "medium": "🟡 Medium - Standard functionalities",
-      "complex": "🔴 Complex - Advanced functionalities"
+      "simple": "🟢 Basic - Just what you need (-20%)",
+      "medium": "🟡 Standard - Complete features",
+      "complex": "🔴 Advanced - Many special functions (+50%)"
     },
     "timeline_descriptions": {
-      "rush": "⚡ Rush - 1-2 weeks (+50%)",
-      "normal": "📅 Normal - 3-4 weeks",
-      "flexible": "🗓️ Flexible - 5+ weeks (-15%)"
+      "rush": "⚡ I need it NOW - 1-2 weeks (+50%)",
+      "normal": "📅 Normal time - 2-4 weeks",
+      "flexible": "🗓️ No rush - 4+ weeks (-15%)"
     },
     "timeline": {
       "rush": "Rush (1-2 weeks)",
