@@ -96,7 +96,7 @@
     "categories": {
       "frontend": {
         "title": "Frontend",
-        "items": ["HTML5 & CSS3", "JavaScript", "TypeScript", "Vue 3", "React Js", "Next.js", "Tailwind CSS"]
+        "items": ["HTML5 & CSS3", "JavaScript", "TypeScript", "Vue 3", "React Js", "Next.js", "Tailwind CSS", "PrimeVue", "Vuetify"]
       },
       "backend": {
         "title": "Backend",
@@ -198,6 +198,20 @@
       "comments": "💬 Sistema de comentarios",
       "multilang": "🌍 Soporte multilenguaje"
     },
+    "additional_services": {
+      "domain_purchase": "🌐 Compra de dominio (.com)",
+      "domain_setup": "⚙️ Configuración de dominio",
+      "hosting_setup": "🖥️ Configuración de hosting",
+      "ssl_setup": "🔒 Instalación de certificado SSL",
+      "email_setup": "📧 Configuración de emails corporativos",
+      "local_installation": "💻 Instalación en servidor local",
+      "maintenance_1month": "🔧 Mantenimiento 1 mes",
+      "maintenance_3months": "🔧 Mantenimiento 3 meses",
+      "maintenance_6months": "🔧 Mantenimiento 6 meses",
+      "seo_optimization": "🔍 Optimización SEO avanzada",
+      "training": "📚 Capacitación de uso del sistema",
+      "backup_setup": "💾 Configuración de respaldos automáticos"
+    },
     "complexity": {
       "simple": "Simple",
       "medium": "Medio",
@@ -249,6 +263,11 @@
       "timeline_title": "Timeline del proyecto:"
     },
     "step4": {
+      "title": "Servicios adicionales",
+      "subtitle": "¿Necesitas ayuda con dominio, hosting o instalación?",
+      "optional": "(Opcional) Selecciona los servicios adicionales que necesites:"
+    },
+    "step5": {
       "title": "¡Tu cotización está lista!",
       "subtitle": "Resumen de tu proyecto y estimación",
       "estimated_quote": "Cotización estimada para tu proyecto",

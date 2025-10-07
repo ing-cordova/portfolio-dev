@@ -96,7 +96,7 @@
     "categories": {
       "frontend": {
         "title": "Frontend",
-        "items": ["HTML5 & CSS3", "JavaScript", "TypeScript", "Vue 3", "React Js", "Next.js", "Tailwind CSS"]
+        "items": ["HTML5 & CSS3", "JavaScript", "TypeScript", "Vue 3", "React Js", "Next.js", "Tailwind CSS", "PrimeVue", "Vuetify"]
       },
       "backend": {
         "title": "Backend",
@@ -198,6 +198,20 @@
       "comments": "💬 Comment system",
       "multilang": "🌍 Multi-language support"
     },
+    "additional_services": {
+      "domain_purchase": "🌐 Domain purchase (.com)",
+      "domain_setup": "⚙️ Domain configuration",
+      "hosting_setup": "🖥️ Hosting setup",
+      "ssl_setup": "🔒 SSL certificate installation",
+      "email_setup": "📧 Corporate email setup",
+      "local_installation": "💻 Local server installation",
+      "maintenance_1month": "🔧 1 month maintenance",
+      "maintenance_3months": "🔧 3 months maintenance",
+      "maintenance_6months": "🔧 6 months maintenance",
+      "seo_optimization": "🔍 Advanced SEO optimization",
+      "training": "📚 System usage training",
+      "backup_setup": "💾 Automatic backup setup"
+    },
     "complexity": {
       "simple": "Simple",
       "medium": "Medium",
@@ -249,6 +263,11 @@
       "timeline_title": "Project timeline:"
     },
     "step4": {
+      "title": "Additional services",
+      "subtitle": "Do you need help with domain, hosting or installation?",
+      "optional": "(Optional) Select the additional services you need:"
+    },
+    "step5": {
       "title": "Your quote is ready!",
       "subtitle": "Project summary and estimation",
       "estimated_quote": "Estimated quote for your project",
