@@ -191,13 +191,15 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       ? '\n\n🔧 SERVICIOS ADICIONALES:\n' + selectedServices.map(s => `→ ${s.name.replace(/[🌐⚙️🖥️🔒📧💻🔧🔍📚💾]/g, '')} (+$${s.price})`).join('\n')
       : ''
     
+    const disclaimer = '\n\n⚠️ IMPORTANTE:\n' + t('step5.price_disclaimer')
+    
     return baseMessage
       .replace('{type}', t(`project_types.${quoteData.projectType}`))
       .replace('{projectType}', t(`project_types.${quoteData.projectType}`))
       .replace('{complexity}', t(`complexity.${quoteData.complexity}`))
       .replace('{timeline}', t(`timeline.${quoteData.timeline}`))
       .replace('{featuresText}', featuresText + servicesText)
-      .replace('{total}', '$' + price.max.toLocaleString())
+      .replace('{total}', '$' + price.max.toLocaleString()) + disclaimer
   }
 
   const copyQuote = async () => {
@@ -874,6 +876,20 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               
                               <div className="text-xs text-muted-foreground text-center">
                                 El mensaje incluirá todos los detalles de tu cotización
+                              </div>
+                              
+                              {/* Nota aclaratoria sobre el precio */}
+                              <div 
+                                className="mt-4 p-3 rounded-lg border"
+                                style={{
+                                  backgroundColor: isDark ? 'rgba(120, 53, 15, 0.2)' : 'rgb(243, 244, 246)',
+                                  borderColor: isDark ? 'rgb(146, 64, 14)' : 'rgb(107, 114, 128)',
+                                  color: isDark ? 'rgb(253, 230, 138)' : 'rgb(31, 41, 55)'
+                                }}
+                              >
+                                <p className="text-xs text-center font-medium">
+                                  {t('step5.price_disclaimer')}
+                                </p>
                               </div>
                             </div>
                           </div>

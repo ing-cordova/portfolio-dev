@@ -30,11 +30,14 @@ export const FEATURE_PRICES = {
   },
   webapp: {
     responsive: 0,      // Siempre incluido
-    auth: 250,         // Login de usuarios
-    dashboard: 300,    // Panel de control
-    database: 200,     // Guarda información
-    api: 250,          // Conecta con otros sistemas
-    realtime: 350      // Actualizaciones instantáneas
+    auth: 0,           // Login de usuarios (incluido - básico)
+    database: 0,       // Base de datos (incluido - esencial)
+    interactive_forms: 150, // Formularios interactivos
+    search: 200,       // Sistema de búsqueda
+    notifications: 250, // Notificaciones en tiempo real
+    api: 300,          // Integraciones con servicios externos
+    dashboard: 400,    // Dashboard personalizable para usuarios
+    realtime: 450      // Actualizaciones en tiempo real
   },
   ecommerce: {
     responsive: 0,      // Siempre incluido
@@ -47,17 +50,18 @@ export const FEATURE_PRICES = {
   admin: {
     responsive: 0,      // Siempre incluido
     database: 0,       // Base de datos (incluido - esencial)
-    auth: 250,           // Login básico (incluido)
-    dashboard: 200,    // Panel de control principal
-    users: 300,        // Gestión completa de usuarios
-    reports: 350,      // Reportes y estadísticas avanzadas
-    notifications: 250, // Sistema de notificaciones
-    audit: 300,        // Registro de actividades
-    inventory: 400,    // Sistema de inventario
-    security: 350,     // Seguridad avanzada + OAuth
-    api: 300,          // API REST para integraciones
-    backup: 250,       // Respaldos automáticos
-    roles: 400         // Sistema de roles y permisos
+    auth: 0,           // Login básico (incluido)
+    dashboard: 0,      // Panel de control principal (incluido)
+    users: 250,        // Gestión completa de usuarios
+    reports: 300,      // Reportes y estadísticas avanzadas
+    audit: 350,        // Registro de actividades y logs
+    inventory: 400,    // Sistema de inventario empresarial
+    security: 450,     // Seguridad avanzada y auditoría
+    roles: 300,        // Sistema de roles y permisos granulares
+    backup: 250,       // Respaldos automáticos programados
+    api: 350,          // API REST para integraciones ERP
+    workflows: 500,    // Flujos de trabajo automatizados
+    analytics: 400     // Analytics empresarial avanzado
   },
   api: {
     rest: 0,           // Conexión básica (incluido)
