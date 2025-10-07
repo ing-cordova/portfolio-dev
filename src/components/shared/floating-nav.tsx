@@ -29,6 +29,7 @@ const navItems: NavItem[] = [
 
 export function FloatingNav() {
   const [activeSection, setActiveSection] = useState("hero")
+  const [isFooterVisible, setIsFooterVisible] = useState(false)
   const t = useTranslations("FloatingNav")
 
   useEffect(() => {
@@ -40,6 +41,14 @@ export function FloatingNav() {
 
       // Check if we're near the bottom of the page
       const isNearBottom = scrollPosition + windowHeight >= documentHeight - 100
+
+      // Check if footer is visible (footer detection)
+      const footer = document.querySelector('footer')
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect()
+        const footerVisible = footerRect.top < windowHeight
+        setIsFooterVisible(footerVisible)
+      }
 
       // If near bottom, activate the last section
       if (isNearBottom) {
@@ -79,8 +88,15 @@ export function FloatingNav() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 1 }}
+      animate={{ 
+        opacity: 1, 
+        y: isFooterVisible ? -75 : 0 // Se mueve hacia arriba cuando el footer es visible
+      }}
+      transition={{ 
+        duration: 0.5, 
+        delay: 1,
+        y: { duration: 0.3, ease: "easeInOut" } // Animación suave para el movimiento vertical
+      }}
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 sm:bottom-8"
     >
       <div className="relative">
