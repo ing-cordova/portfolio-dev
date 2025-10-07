@@ -129,7 +129,9 @@
     }
   },
   "Footer": {
-    "copyright": "© {year} Andrés Córdova. Todos los derechos reservados."
+    "copyright": "© {year} Andrés Córdova. Todos los derechos reservados.",
+    "copyright_name": "© {year} Andrés Córdova",
+    "copyright_rights": "Todos los derechos reservados"
   },
   "FloatingNav": {
     "hero": "Inicio",
