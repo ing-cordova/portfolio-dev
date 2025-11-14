@@ -284,7 +284,7 @@
         "not_selected": "No seleccionado"
       },
       "contact_message": "📞 Contáctame para una cotización detallada",
-      "price_disclaimer": "* Este precio es únicamente por el desarrollo del proyecto. No incluye gastos de producción como dominios, hosting, certificados SSL, licencias de terceros u otros servicios externos.",
+      "price_disclaimer": "* Esta estimación corresponde únicamente al trabajo de desarrollo. Cualquier coste operativo, servicio externo o configuración adicional se considerará y cotizará por separado.",
       "actions": {
         "copy_quote": "Copiar Cotización",
         "send_whatsapp": "Enviar por WhatsApp"

@@ -284,7 +284,7 @@
         "not_selected": "Not selected"
       },
       "contact_message": "📞 Contact me for a detailed quote",
-      "price_disclaimer": "* This price is exclusively for project development. It does not include production costs such as domains, hosting, SSL certificates, third-party licenses, or other external services.",
+      "price_disclaimer": "* This estimate covers development work only. Any operational costs, external services, or additional configurations will be considered and quoted separately.",
       "actions": {
         "copy_quote": "Copy Quote",
         "send_whatsapp": "Send via WhatsApp"
