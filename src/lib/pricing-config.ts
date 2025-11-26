@@ -41,7 +41,7 @@ export const FEATURE_PRICES = {
   },
   ecommerce: {
     responsive: 0,      // Siempre incluido
-    cart: 200,         // Carrito de compras
+    cart: 0,         // Carrito de compras
     payments: 400,     // Recibir pagos online
     inventory: 250,    // Control de productos
     orders: 200,       // Gestión de pedidos
