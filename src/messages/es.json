@@ -56,6 +56,14 @@
         "tags": ["Wordpress", "PHP", "Stripe", "MySQL", "Bootstrap", "jQuery", "Tutor LMS"],
         "liveUrl": "https://braings.com",
         "status": "production"
+      },
+      {
+        "title": "Song Wrapped - Dashboard UI",
+        "description": "Aplicación Full Stack desarrollada con Next.js 14 y TypeScript. Integra la API de Spotify mediante OAuth 2.0 para analizar patrones de escucha, calcular tu nivel de 'Mainstream' y generar imágenes virales instantáneas para Instagram Stories usando renderizado en el cliente.",
+        "image": "/projects/project-4.png",
+        "tags": ["NextJs", "TypeScript", "Tailwind CSS", "Spotify Web API", "NextAuth.js (OAuth)", "Recharts (Data Viz)", "Vercel"],
+        "liveUrl": "https://songwrapped.bycordova.com",
+        "status": "production"
       }
     ],
     "cta": "¿Te interesa alguno de estos proyectos?",
