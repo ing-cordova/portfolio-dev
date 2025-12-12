@@ -64,6 +64,13 @@
         "tags": ["NextJs", "TypeScript", "Tailwind CSS", "Spotify Web API", "NextAuth.js (OAuth)", "Recharts (Data Viz)", "Vercel"],
         "liveUrl": "https://songwrapped.bycordova.com",
         "status": "production"
+      },
+      {
+        "title": "Auratrade IA",
+        "description": "Your competitive edge in trading: Autonomous market analysis and real-time precision alerts.",
+        "image": "/projects/project-5.png",
+        "tags": ["Python", "Angular"],
+        "status": "development"
       }
     ],
     "cta": "Are you interested in some of these projects?",

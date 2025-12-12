@@ -6,7 +6,7 @@ import { ProjectCard } from "@/components/shared/project-card"
 import { Button } from "@/components/ui/button"
 
 import { Filter, ChevronDown, Search, Check, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { SmoothScroll } from "@/components/shared/smooth-scroll"
 
 interface ProjectItem {
@@ -28,6 +28,12 @@ export function Projects() {
   // --- ESTADO DEL CARRUSEL ---
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(1);
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [slideWidth, setSlideWidth] = useState(0)
+
+  const gapByItems = { 1: 0, 2: 24, 3: 32 } as const
+  const currentGap = gapByItems[itemsPerPage as keyof typeof gapByItems] ?? 24
+  const cardWidthValue = `calc((100% - ${(itemsPerPage - 1) * currentGap}px) / ${itemsPerPage})`
 
   // Obtenemos los proyectos del archivo de traducción
   const projectItems = (t.raw("items") as ProjectItem[]) || [];
@@ -79,7 +85,22 @@ export function Projects() {
     setCurrentIndex(0);
   }, [selectedFilter, searchTerm]);
 
-  // 3. Funciones de navegación
+  // 3. Medir el ancho real de cada tarjeta para desplazar exactamente un item
+  useEffect(() => {
+    const updateSlideWidth = () => {
+      if (!carouselRef.current) return
+      const firstItem = carouselRef.current.querySelector<HTMLElement>("[data-carousel-item]")
+      if (!firstItem) return
+      const measuredWidth = firstItem.getBoundingClientRect().width
+      setSlideWidth(measuredWidth + currentGap)
+    }
+
+    updateSlideWidth()
+    window.addEventListener("resize", updateSlideWidth)
+    return () => window.removeEventListener("resize", updateSlideWidth)
+  }, [itemsPerPage, filteredProjects.length, currentGap])
+
+  // 4. Funciones de navegación
   const nextSlide = () => {
     setCurrentIndex((prev) => {
       if (prev >= filteredProjects.length - itemsPerPage) return 0;
@@ -251,17 +272,20 @@ export function Projects() {
         {/* --- INICIO DEL CARRUSEL --- */}
         {filteredProjects.length > 0 ? (
           <div className="relative px-2 sm:px-4"> 
-            
-            {/* Contenedor Overflow Hidden */}
             <div className="overflow-hidden py-4 -my-4">
               <motion.div
-                className="flex gap-8"
+                ref={carouselRef}
+                className="flex"
+                style={{ gap: `${currentGap}px` }}
                 animate={{
-                  x: `-${currentIndex * (100 / itemsPerPage)}%`
+                  x: -currentIndex * slideWidth
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 drag="x"
-                dragConstraints={{ left: -1000, right: 0 }}
+                dragConstraints={{
+                  left: -Math.max(0, (filteredProjects.length - itemsPerPage) * slideWidth),
+                  right: 0
+                }}
                 onDragEnd={(e, { offset }) => {
                   if (offset.x < -50) nextSlide();
                   else if (offset.x > 50) prevSlide();
@@ -271,9 +295,9 @@ export function Projects() {
                   <motion.div
                     key={`${project.title}-${selectedFilter}`}
                     className="flex-shrink-0"
+                    data-carousel-item
                     style={{
-                      // Cálculo del ancho
-                      width: `calc(${100 / itemsPerPage}% - ${(32 * (itemsPerPage - 1)) / itemsPerPage}px)`
+                      width: cardWidthValue
                     }}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
