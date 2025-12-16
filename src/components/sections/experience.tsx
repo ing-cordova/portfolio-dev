@@ -10,6 +10,7 @@ interface ExperienceItemData {
   title: string;
   company: string;
   description: string;
+  location?: string;
 }
 
 export function Experience() {
@@ -52,6 +53,7 @@ export function Experience() {
                 title={item.title}
                 company={item.company}
                 description={item.description}
+                location={item.location}
               />
             </motion.div>
           ))}

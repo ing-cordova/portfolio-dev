@@ -1,12 +1,40 @@
 // src/components/shared/experience-item.tsx
+type LocationType = "remote" | "on-site" | "hybrid"
+
 interface ExperienceItemProps {
   date: string;
   title: string;
   company: string;
   description: string;
+  location?: string;
 }
 
-export function ExperienceItem({ date, title, company, description }: ExperienceItemProps) {
+export function ExperienceItem({ date, title, company, description, location }: ExperienceItemProps) {
+  const locationStyles: Record<LocationType, { label: string; classes: string }> = {
+    remote: {
+      label: "Remote",
+      classes: "bg-emerald-100/70 text-emerald-800 border border-emerald-200"
+    },
+    "on-site": {
+      label: "On-site",
+      classes: "bg-sky-100/70 text-sky-800 border border-sky-200"
+    },
+    hybrid: {
+      label: "Hybrid",
+      classes: "bg-violet-100/70 text-violet-800 border border-violet-200"
+    }
+  }
+
+  const isLocationType = (value: string): value is LocationType =>
+    ["remote", "on-site", "hybrid"].includes(value as LocationType)
+
+  const normalizedLocation = location?.toLowerCase().trim() ?? ""
+  const chipData = normalizedLocation && isLocationType(normalizedLocation)
+    ? locationStyles[normalizedLocation]
+    : undefined
+  const chipLabel = chipData?.label ?? location
+  const chipClasses = chipData?.classes ?? "bg-muted text-foreground border border-muted-foreground/40"
+
   return (
     <div className="relative pl-12 pb-8 group">
       {/* Círculo del timeline */}
@@ -29,8 +57,16 @@ export function ExperienceItem({ date, title, company, description }: Experience
           <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
             {title}
           </h3>
-          <div className="text-base font-semibold text-primary/80">
-            {company}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="text-base font-semibold text-primary/80">
+              {company}
+            </div>
+            {location && (
+              <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${chipClasses}`}>
+                <span className="h-2 w-2 rounded-full bg-current opacity-70" aria-hidden="true" />
+                {chipLabel}
+              </span>
+            )}
           </div>
         </div>
         
