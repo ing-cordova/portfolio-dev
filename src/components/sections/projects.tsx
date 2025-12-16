@@ -61,6 +61,18 @@ export function Projects() {
     ? projectItems 
     : projectItems.filter(project => project.tags.includes(selectedFilter))
 
+  const statusPriority: Record<NonNullable<ProjectItem["status"]>, number> = {
+    production: 0,
+    finished: 1,
+    development: 2
+  }
+
+  const sortedProjects = filteredProjects.slice().sort((a, b) => {
+    const priorityA = a.status ? statusPriority[a.status] : Number.MAX_SAFE_INTEGER
+    const priorityB = b.status ? statusPriority[b.status] : Number.MAX_SAFE_INTEGER
+    return priorityA - priorityB
+  })
+
   // --- LÓGICA DEL CARRUSEL ---
   
   // 1. Determinar items por página (Responsive)
@@ -291,7 +303,7 @@ export function Projects() {
                   else if (offset.x > 50) prevSlide();
                 }}
               >
-                {filteredProjects.map((project, index) => (
+                {sortedProjects.map((project, index) => (
                   <motion.div
                     key={`${project.title}-${selectedFilter}`}
                     className="flex-shrink-0"
