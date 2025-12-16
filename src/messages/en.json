@@ -47,7 +47,8 @@
         "image": "/projects/project-2.png",
         "tags": ["Vue 3", "Vuetify", "TypeScript", "Pinia", "Chart.js"],
         "githubUrl": "https://gitlab.com/ing-cordova/vue-frontend-template/-/tree/dev-cordova?ref_type=heads",
-        "status": "finished"
+        "liveUrl": "https://admintemplate.bycordova.com",
+        "status": "production"
       },
       {
         "title": "International Academic Platform, Braings",
@@ -85,19 +86,22 @@
         "date": "2024 - Present",
         "title": "Software Developer",
         "company": "Secretaría de Innovación de la Presidencia, El Salvador.",
-        "description": "Developing innovative applications for different government portfolios, implementing new, scalable technologies."
+        "description": "Developing innovative applications for different government portfolios, implementing new, scalable technologies.",
+        "location": "on-site"
       },
       {
         "date": "2023 - 2024",
         "title": "Backend Developer",
         "company": "Techy-We",
-        "description": "I participated in projects for international companies in the banking sector, implementing scalable and more secure architectures on the backend, as well as effective communication between colleagues from different countries, todeliver a quality product."
+        "description": "I participated in projects for international companies in the banking sector, implementing scalable and more secure architectures on the backend, as well as effective communication between colleagues from different countries, todeliver a quality product.",
+        "location": "remote"
       },
       {
         "date": "2023 - 2023",
         "title": "Application Development Trainee",
         "company": "Telus International Digital Solutions",
-        "description": "As a software development intern, collaborating with large teams, I learned backend, frontend, and devops technologies, preparing us for internal company projects and professional skill development, as well as good communication with product owners."
+        "description": "As a software development intern, collaborating with large teams, I learned backend, frontend, and devops technologies, preparing us for internal company projects and professional skill development, as well as good communication with product owners.",
+        "location": "remote"
       }
     ]
   },

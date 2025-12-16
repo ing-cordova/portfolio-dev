@@ -47,7 +47,8 @@
         "image": "/projects/project-2.png",
         "tags": ["Vue 3", "Vuetify", "TypeScript", "Pinia", "Chart.js"],
         "githubUrl": "https://gitlab.com/ing-cordova/vue-frontend-template/-/tree/dev-cordova?ref_type=heads",
-        "status": "finished"
+        "liveUrl": "https://admintemplate.bycordova.com",
+        "status": "production"
       },
       {
         "title": "Plataforma Académica Internacional, Braings",
@@ -85,19 +86,22 @@
         "date": "2024 - Presente",
         "title": "Desarrollador de Software",
         "company": "Secretaría de Innovación de la Presidencia, El Salvador.",
-        "description": "Desarrollo de aplicaciones innovadoras para distintos portafolios gubernamentales, implementando tecnologías nuevas y escalables."
+        "description": "Desarrollo de aplicaciones innovadoras para distintos portafolios gubernamentales, implementando tecnologías nuevas y escalables.",
+        "location": "on-site"
       },
       {
         "date": "2023 - 2024",
         "title": "Desarrollador Backend",
         "company": "Techy-We",
-        "description": "Participé en proyectos para compañías internacionales del sector bancario, implementando arquitecturas más seguras y escalables en backend, además de una comunicación efectiva entre colegas de distintos países para entregar un producto de calidad."
+        "description": "Participé en proyectos para compañías internacionales del sector bancario, implementando arquitecturas más seguras y escalables en backend, además de una comunicación efectiva entre colegas de distintos países para entregar un producto de calidad.",
+        "location": "remote"
       },
       {
         "date": "2023 - 2023",
         "title": "Trainee en Desarrollo de Aplicaciones",
         "company": "Telus International Digital Solutions",
-        "description": "Como pasante en desarrollo de software, colaboré con grandes equipos y aprendí tecnologías de backend, frontend y devops. Me preparé para proyectos internos de la compañía y desarrollé habilidades profesionales, incluyendo comunicación con product owners."
+        "description": "Como pasante en desarrollo de software, colaboré con grandes equipos y aprendí tecnologías de backend, frontend y devops. Me preparé para proyectos internos de la compañía y desarrollé habilidades profesionales, incluyendo comunicación con product owners.",
+        "location": "remote"
       }
     ]
   },
