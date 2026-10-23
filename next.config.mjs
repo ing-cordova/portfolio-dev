@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración básica sin plugin de next-intl
+  output: 'standalone',
 };
 
 export default nextConfig;
