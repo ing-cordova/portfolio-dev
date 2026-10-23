@@ -1,15 +1,15 @@
 import { notFound } from 'next/navigation';
-import { Inter } from 'next/font/google';
+import { Manrope, Instrument_Serif } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { IntlProvider } from '../../components/IntlProvider';
-import { Navbar } from '@/components/sections/navbar';
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ["latin"], variable: '--font-sans' });
+const instrument = Instrument_Serif({ subsets: ["latin"], weight: '400', style: ['normal', 'italic'], variable: '--font-editorial' });
 
-export const metadata = {
-  title: "Andrés Córdova - Full Stack Developer",
-  description: "Portafolio profesional de desarrollo web.",
+const siteMetadata = {
+  title: "Andrés Córdova — Software & AI Engineer",
+  description: "Ingeniería de software con intención. Productos digitales, sistemas empresariales y experiencias con inteligencia artificial por Andrés Córdova.",
   icons: {
     icon: [
       {
@@ -27,6 +27,16 @@ export const metadata = {
   }
 };
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    ...siteMetadata,
+    description: locale === 'en'
+      ? 'Software engineering with intention. Digital products, business systems, and AI experiences by Andrés Córdova.'
+      : siteMetadata.description,
+  };
+}
+
 export function generateStaticParams() {
   return [{locale: 'en'}, {locale: 'es'}];
 }
@@ -42,7 +52,6 @@ export default async function LocaleLayout({
 }: Props) {
   const { locale } = await params;
   
-  // Validate locale
   if (!['en', 'es'].includes(locale)) {
     notFound();
   }
@@ -60,9 +69,9 @@ export default async function LocaleLayout({
         <link rel="icon" href="/sparkle.ico" sizes="32x32" />
         <link rel="icon" href="/sparkle.ico" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/sparkle.ico" />
-        <meta name="theme-color" content="#3b82f6" />
+        <meta name="theme-color" content="#0c101e" />
       </head>
-      <body className={inter.className}>
+      <body className={`${manrope.variable} ${instrument.variable} ${manrope.className}`}>
         <IntlProvider locale={locale} messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -70,7 +79,6 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
             {children}
           </ThemeProvider>
         </IntlProvider>
