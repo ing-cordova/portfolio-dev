@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Check, Copy, Download, Github, Linkedin, Menu, Pause, Play, X } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Check, CodeXml, Copy, Download, Github, Linkedin, Menu, Pause, Play, X } from "lucide-react";
+import { ExperienceTimeline } from "./experience-timeline";
 import { ParticleField } from "./particle-field";
-import { SkillVisual } from "./skill-visual";
+import { TechnologyGrid } from "./technology-grid";
 import { content } from "./content";
 import esMessages from "@/messages/es.json";
 import enMessages from "@/messages/en.json";
@@ -103,7 +104,7 @@ export function Portfolio({ locale }: { locale: "es" | "en" }) {
           </div>
           <div className="v2-hero-bottom"><span><i className="v2-location-dot" />{c.location}<span className="v2-utc">UTC −6</span></span><a href="#projects" className="v2-scroll-label">SCROLL TO EXPLORE<ArrowDown size={14} /></a><button onClick={() => setPaused(!paused)} aria-label={paused ? c.resume : c.pause} aria-pressed={paused}>{paused ? <Play size={13} /> : <Pause size={13} />}<span>{paused ? c.resume : c.pause}</span></button></div>
         </section>
-        <div className="v2-discipline-strip" aria-label={c.role}><span>FULL STACK ENGINEERING</span><i>✳</i><span>CONVERSATIONAL AI</span><i>✳</i><span>DIGITAL EXPERIENCES</span><i>✳</i><span>FROM IDEA TO PRODUCTION</span></div>
+        <div className="v2-discipline-strip" aria-label={c.role}><span>FULL STACK ENGINEERING</span><i aria-hidden="true"><CodeXml size={22} strokeWidth={1.4} /></i><span>CONVERSATIONAL AI</span><i aria-hidden="true"><CodeXml size={22} strokeWidth={1.4} /></i><span>DIGITAL EXPERIENCES</span><i aria-hidden="true"><CodeXml size={22} strokeWidth={1.4} /></i><span>FROM IDEA TO PRODUCTION</span></div>
 
         <section id="projects" className="v2-section v2-projects">
           <div className="v2-section-head" data-reveal><div><p className="v2-eyebrow">{c.projectEyebrow}</p><h2>{c.projectTitle}<span className="v2-section-count">(04)</span></h2></div><p className="v2-section-intro">{c.projectIntro}</p></div>
@@ -133,24 +134,21 @@ export function Portfolio({ locale }: { locale: "es" | "en" }) {
 
         <section id="about" className="v2-section v2-about">
           <p className="v2-eyebrow" data-reveal>{c.aboutEyebrow}</p>
-          <div className="v2-about-grid"><div className="v2-portrait" data-reveal><Image src="/profile.webp" alt="Andrés Córdova" width={650} height={800} sizes="(max-width: 760px) 85vw, 32vw" /><div className="v2-portrait-label"><span>ANDRÉS CÓRDOVA</span><span>ENGINEER & BUILDER ↗</span></div><span className="v2-portrait-star" aria-hidden="true">✳</span></div><div className="v2-about-copy" data-reveal><h2>{c.aboutTitle}</h2><p>{c.aboutText}</p><p className="v2-about-note">{c.aboutNote}</p><div className="v2-about-signature"><span>Ing. Andrés.</span><a href="/cv/andres-cordova-cv.pdf" download className="v2-text-link">{c.downloadCv}<Download size={15} /></a></div></div></div>
+          <div className="v2-about-grid"><div className="v2-portrait" data-reveal><Image src="/profile.webp" alt="Andrés Córdova" width={650} height={800} sizes="(max-width: 760px) 85vw, 32vw" /><div className="v2-portrait-label"><span>ANDRÉS CÓRDOVA</span><span>ENGINEER & BUILDER ↗</span></div><span className="v2-portrait-mark" aria-hidden="true"><CodeXml strokeWidth={1.25} /></span></div><div className="v2-about-copy" data-reveal><h2>{c.aboutTitle}</h2><p>{c.aboutText}</p><p className="v2-about-note">{c.aboutNote}</p><div className="v2-about-signature"><span>Ing. Andrés.</span><a href="/cv/andres-cordova-cv.pdf" download className="v2-text-link">{c.downloadCv}<Download size={15} /></a></div></div></div>
         </section>
 
         <section id="skills" className={`v2-section v2-skills ${active === "skills" ? "is-active" : ""}`} data-paused={paused}>
           <div className="v2-section-head" data-reveal><div><p className="v2-eyebrow">{c.skillsEyebrow}</p><h2>{c.skillsTitle.split(". ")[0]}. <em>{c.skillsTitle.split(". ")[1]}</em></h2></div><p className="v2-section-intro">{c.skillsIntro}</p></div>
-          <div className="v2-capability-grid">{c.skillGroups.map((group, index) => <article className={`v2-capability v2-capability-${index}`} key={group.title} data-reveal>
-            <div className="v2-capability-art"><span className="v2-capability-index">0{index + 1}<span> / 04</span></span><SkillVisual index={index} /><span className="v2-capability-domain">{(locale === "es" ? ["INTERFACES", "SISTEMAS", "INTELIGENCIA", "ENTREGA"] : ["INTERFACES", "SYSTEMS", "INTELLIGENCE", "DELIVERY"])[index]}</span></div>
-            <div className="v2-capability-copy"><h3>{group.title}</h3><p>{group.description}</p><ul className="v2-capability-tools">{group.items.map(item => <li key={item}>{item}</li>)}</ul></div>
-          </article>)}</div>
+          <TechnologyGrid locale={locale} motionPaused={paused} onResumeMotion={() => setPaused(false)} />
         </section>
 
         <section id="experience" className="v2-section v2-experience">
           <div className="v2-experience-heading" data-reveal><p className="v2-eyebrow">{c.experienceEyebrow}</p><h2>{c.experienceTitle}</h2><span className="v2-experience-symbol" aria-hidden="true">↗</span></div>
-          <div className="v2-timeline">{experience.map((item, index) => <article key={item.company} data-reveal><span className="v2-timeline-point" /><div className="v2-job-date">{item.date}<span>{item.location === "remote" ? (locale === "es" ? "Remoto" : "Remote") : (locale === "es" ? "Presencial" : "On-site")}</span></div><h3>{item.title}</h3><h4>{item.company}</h4><p>{item.description}</p><span className="v2-job-index">0{index + 1}</span></article>)}</div>
+          <ExperienceTimeline>{experience.map((item, index) => <article key={item.company}><span className="v2-timeline-point" /><div className="v2-job-date">{item.date}<span>{item.location === "remote" ? (locale === "es" ? "Remoto" : "Remote") : (locale === "es" ? "Presencial" : "On-site")}</span></div><h3>{item.title}</h3><h4>{item.company}</h4><p>{item.description}</p><span className="v2-job-index">0{index + 1}</span></article>)}</ExperienceTimeline>
         </section>
 
         <section id="contact" className="v2-section v2-contact">
-          <div className="v2-contact-top"><p className="v2-eyebrow">05 / {c.contactEyebrow}</p><span className="v2-contact-star" aria-hidden="true">✳</span></div>
+          <div className="v2-contact-top"><p className="v2-eyebrow">05 / {c.contactEyebrow}</p><span className="v2-contact-mark" aria-hidden="true"><CodeXml strokeWidth={1.25} /></span></div>
           <h2 data-reveal>{c.contactTitle}<ArrowUpRight aria-hidden="true" /></h2><div className="v2-contact-bottom"><p>{c.contactText}</p><div className="v2-contact-actions"><a href={`mailto:${email}`} className="v2-button">{c.emailCta}<ArrowUpRight size={18} /></a><button className="v2-copy-email" onClick={copyEmail}>{copied ? <Check size={16} /> : <Copy size={16} />}<span>{copied ? c.copied : c.copyEmail}</span></button><span className="v2-copy-status" role="status">{copied ? c.copied : ""}</span></div></div>
           <div className="v2-socials"><a href="https://github.com/ing-cordova" target="_blank" rel="noopener noreferrer"><Github size={16} />GitHub<ArrowUpRight size={13} /></a><a href="https://linkedin.com/in/ing-cordova" target="_blank" rel="noopener noreferrer"><Linkedin size={16} />LinkedIn<ArrowUpRight size={13} /></a><a href="https://wa.me/50376592632" target="_blank" rel="noopener noreferrer">WhatsApp<ArrowUpRight size={13} /></a></div>
         </section>
