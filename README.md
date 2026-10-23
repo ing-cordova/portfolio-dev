@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Andrés Córdova · Portfolio v2
 
-## Getting Started
+Portfolio bilingüe construido con Next.js 15, React 19 y TypeScript. La segunda versión combina Manrope e Instrument Serif, una paleta azul y morado sobre azul noche, partículas Canvas animadas y capturas reales de proyectos en producción.
 
-First, run the development server:
+## Ejecutar
 
-```bash
+```powershell
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La raíz redirige a `/es`. La versión inglesa está en `/en`. La primera versión se conserva en `/es/v1` y `/en/v1`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Docker
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+docker compose up -d --build
+docker compose ps
+```
 
-## Learn More
+Disponible en http://localhost:3021. La imagen utiliza la salida standalone de Next.js y un usuario sin privilegios. El servicio incluye comprobación HTTP de salud.
 
-To learn more about Next.js, take a look at the following resources:
+## Contenido y diseño
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/components/v2/content.ts`: textos, tecnologías, enlaces y proyectos en español e inglés.
+- `src/components/v2/portfolio.tsx`: secciones, navegación, filtros, selector de capturas ERP y contacto.
+- `src/components/v2/portfolio.css`: diseño y adaptación móvil.
+- `src/components/v2/particle-field.tsx`: partículas de polvo y cintas fluidas, con pausa manual, reducción de movimiento y suspensión fuera de pantalla o con la pestaña oculta.
+- `public/projects/v2/`: capturas reales. La imagen del BackOffice procede de los manuales del repositorio ERP y contiene datos ficticios de demostración. Las capturas de Orion, la landing ERP y los manuales provienen de los servicios locales; Braings y el chat Family Friendly se capturaron de sus sitios públicos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Proyectos: Orion, Córdova ERP (BackOffice, landing y manuales como una sola suite), Family Friendly y Braings. Las tecnologías se basan en los repositorios, información proporcionada por el propietario y, en Family Friendly, el frontend Vue observado en el sitio público. La captura pública de Orion muestra el acceso; no se publican datos financieros privados.
 
-## Deploy on Vercel
+Las fuentes se descargan durante la compilación con `next/font` y se sirven desde la aplicación. La compilación necesita conectividad con Google Fonts.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Validación
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```powershell
+npx tsc --noEmit
+npx eslint src/components/v2/portfolio.tsx src/components/v2/content.ts src/components/v2/particle-field.tsx 'src/app/[locale]/page.tsx' 'src/app/[locale]/layout.tsx' 'src/app/[locale]/v1/page.tsx' next.config.mjs
+npm run build
+```
+
+El build comprueba tipos y genera las páginas estáticas. Desactiva el lint automático de todo el repositorio: ESLint debe ejecutarse únicamente sobre los archivos modificados.
