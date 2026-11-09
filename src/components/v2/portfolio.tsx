@@ -80,7 +80,7 @@ export function Portfolio({ locale }: { locale: "es" | "en" }) {
     <div className="portfolio-v2" ref={rootRef}>
       <a className="v2-skip" href="#projects">{c.projectsCta}</a>
       <header className="v2-header">
-        <a href="#home" className="v2-brand" aria-label="Andrés Córdova">ac<span>↗</span><i /></a>
+        <a href="#home" className="v2-brand" aria-label="Andrés Córdova">Andrés Córdova</a>
         <nav aria-label={locale === "es" ? "Navegación principal" : "Main navigation"} className="v2-desktop-nav">
           {c.nav.map(item => <a key={item.id} href={`#${item.id}`} className={active === item.id ? "is-active" : ""}>{item.label}</a>)}
         </nav>
@@ -96,19 +96,19 @@ export function Portfolio({ locale }: { locale: "es" | "en" }) {
           <ParticleField className="v2-particles" paused={paused} />
           <div className="v2-hero-shade" />
           <div className="v2-hero-content">
-            <div className="v2-eyebrow v2-hero-eyebrow"><span className="v2-signal" />{c.role}</div>
+            <div className="v2-eyebrow v2-hero-eyebrow">{c.role}</div>
             <p className="v2-introduction">Andrés Córdova</p>
             <h1>{c.heroLine1}<br />{c.heroLine2}<br /><em>{c.heroAccent.replace(/\.$/, "")}</em><span className="v2-title-dot">.</span></h1>
             <p className="v2-hero-description">{c.heroDescription}</p>
             <div className="v2-hero-actions"><a href="#projects" className="v2-button">{c.projectsCta}<ArrowDownRight size={18} /></a><a href="/cv/andres-cordova-cv.pdf" className="v2-text-link" download>{c.downloadCv}<Download size={15} /></a></div>
           </div>
-          <div className="v2-hero-bottom"><span><i className="v2-location-dot" />{c.location}<span className="v2-utc">UTC −6</span></span><a href="#projects" className="v2-scroll-label">SCROLL TO EXPLORE<ArrowDown size={14} /></a><button onClick={() => setPaused(!paused)} aria-label={paused ? c.resume : c.pause} aria-pressed={paused}>{paused ? <Play size={13} /> : <Pause size={13} />}<span>{paused ? c.resume : c.pause}</span></button></div>
+          <div className="v2-hero-bottom"><span>{c.location}<span className="v2-utc">UTC −6</span></span><a href="#projects" className="v2-scroll-label">SCROLL TO EXPLORE<ArrowDown size={14} /></a><button onClick={() => setPaused(!paused)} aria-label={paused ? c.resume : c.pause} aria-pressed={paused}>{paused ? <Play size={13} /> : <Pause size={13} />}<span>{paused ? c.resume : c.pause}</span></button></div>
         </section>
         <div className="v2-discipline-strip" aria-label={c.role}><span>FULL STACK ENGINEERING</span><i aria-hidden="true"><CodeXml size={22} strokeWidth={1.4} /></i><span>CONVERSATIONAL AI</span><i aria-hidden="true"><CodeXml size={22} strokeWidth={1.4} /></i><span>DIGITAL EXPERIENCES</span><i aria-hidden="true"><CodeXml size={22} strokeWidth={1.4} /></i><span>FROM IDEA TO PRODUCTION</span></div>
 
         <section id="projects" className="v2-section v2-projects">
           <div className="v2-section-head" data-reveal><div><p className="v2-eyebrow">{c.projectEyebrow}</p><h2>{c.projectTitle}<span className="v2-section-count">(04)</span></h2></div><p className="v2-section-intro">{c.projectIntro}</p></div>
-          <div className="v2-project-toolbar"><div className="v2-filters" aria-label={c.projectEyebrow}>{c.projectFilters.map(item => <button key={item.id} aria-pressed={filter === item.id} className={filter === item.id ? "is-selected" : ""} onClick={() => setFilter(item.id)}>{item.label}{item.id === "all" && <span>04</span>}</button>)}</div><span className="v2-production-legend"><i />{c.live}</span></div>
+          <div className="v2-project-toolbar"><div className="v2-filters" aria-label={c.projectEyebrow}>{c.projectFilters.map(item => <button key={item.id} aria-pressed={filter === item.id} className={filter === item.id ? "is-selected" : ""} onClick={() => setFilter(item.id)}>{item.label}{item.id === "all" && <span>04</span>}</button>)}</div><span className="v2-production-legend">{c.live}</span></div>
           <div className="v2-project-grid" aria-live="polite">
             {projects.map(project => {
               const imageSrc = project.id === "cordova-erp" ? erpImage.image : project.image;
@@ -123,7 +123,7 @@ export function Portfolio({ locale }: { locale: "es" | "en" }) {
                 <span className="v2-project-index">/{project.number}</span><span className="v2-project-open"><ArrowUpRight size={23} /></span><span className="v2-project-image-label">{project.name}</span>
               </a>
               {project.id === "cordova-erp" && <div className="v2-preview-switch" aria-label={locale === "es" ? "Vistas de Córdova ERP" : "Córdova ERP views"}>{erpPreviews.map(view => <button key={view.id} aria-pressed={erpPreview === view.id} onClick={() => setErpPreview(view.id)}>{view.label}</button>)}</div>}
-              <div className="v2-project-caption"><span className="v2-eyebrow">{project.categoryLabel}</span><span className="v2-live-dot"><i />{c.live}</span></div>
+              <div className="v2-project-caption"><span className="v2-eyebrow">{project.categoryLabel}</span><span className="v2-live-dot">{c.live}</span></div>
               <h3><a href={project.url} target="_blank" rel="noopener noreferrer">{project.headline}<ArrowUpRight size={22} /></a></h3>
               <p>{project.description}</p><div className="v2-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
               <div className="v2-project-detail"><span>{project.detail}</span><div>{project.links?.map(link => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">{link.label}<ArrowUpRight size={12} /></a>)}</div></div>
@@ -144,16 +144,21 @@ export function Portfolio({ locale }: { locale: "es" | "en" }) {
 
         <section id="experience" className="v2-section v2-experience">
           <div className="v2-experience-heading" data-reveal><p className="v2-eyebrow">{c.experienceEyebrow}</p><h2>{c.experienceTitle}</h2><span className="v2-experience-symbol" aria-hidden="true">↗</span></div>
-          <ExperienceTimeline>{experience.map((item, index) => <article key={item.company}><span className="v2-timeline-point" /><div className="v2-job-date">{item.date}<span>{item.location === "remote" ? (locale === "es" ? "Remoto" : "Remote") : (locale === "es" ? "Presencial" : "On-site")}</span></div><h3>{item.title}</h3><h4>{item.company}</h4><p>{item.description}</p><span className="v2-job-index">0{index + 1}</span></article>)}</ExperienceTimeline>
+          <ExperienceTimeline>{experience.map((item, index) => <article key={item.company}><div className="v2-job-date">{item.date}<span>{item.location === "remote" ? (locale === "es" ? "Remoto" : "Remote") : (locale === "es" ? "Presencial" : "On-site")}</span></div><h3>{item.title}</h3><h4>{item.company}</h4><p>{item.description}</p><span className="v2-job-index">0{index + 1}</span></article>)}</ExperienceTimeline>
+        </section>
+
+        <section id="education" className="v2-section v2-education" aria-labelledby="education-title">
+          <div className="v2-education-heading" data-reveal><p className="v2-eyebrow">{c.educationEyebrow}</p><h2 id="education-title">{c.educationTitle}</h2></div>
+          <div className="v2-education-path" data-reveal>{c.education.map(item => <article key={item.title}><p className="v2-education-date">{item.period}</p><h3>{item.title}</h3><p className="v2-education-institution">{item.institution}</p>{item.detail && <p className="v2-education-distinction">{item.detail}</p>}</article>)}</div>
         </section>
 
         <section id="contact" className="v2-section v2-contact">
-          <div className="v2-contact-top"><p className="v2-eyebrow">05 / {c.contactEyebrow}</p><span className="v2-contact-mark" aria-hidden="true"><CodeXml strokeWidth={1.25} /></span></div>
+          <div className="v2-contact-top"><p className="v2-eyebrow">06 / {c.contactEyebrow}</p><span className="v2-contact-mark" aria-hidden="true"><CodeXml strokeWidth={1.25} /></span></div>
           <h2 data-reveal>{c.contactTitle}<ArrowUpRight aria-hidden="true" /></h2><div className="v2-contact-bottom"><p>{c.contactText}</p><div className="v2-contact-actions"><a href={`mailto:${email}`} className="v2-button">{c.emailCta}<ArrowUpRight size={18} /></a><button className="v2-copy-email" onClick={copyEmail}>{copied ? <Check size={16} /> : <Copy size={16} />}<span>{copied ? c.copied : c.copyEmail}</span></button><span className="v2-copy-status" role="status">{copied ? c.copied : ""}</span></div></div>
           <div className="v2-socials"><a href="https://github.com/ing-cordova" target="_blank" rel="noopener noreferrer"><Github size={16} />GitHub<ArrowUpRight size={13} /></a><a href="https://linkedin.com/in/ing-cordova" target="_blank" rel="noopener noreferrer"><Linkedin size={16} />LinkedIn<ArrowUpRight size={13} /></a><a href="https://wa.me/50376592632" target="_blank" rel="noopener noreferrer">WhatsApp<ArrowUpRight size={13} /></a></div>
         </section>
       </main>
-      <footer className="v2-footer"><a href="#home" className="v2-brand" aria-label={c.backTop}>ac<span>↗</span></a><span>© {new Date().getFullYear()} Andrés Córdova</span><span>{c.footerNote}</span><a href="#home">{c.backTop}<ArrowRight size={14} className="v2-back-arrow" /></a></footer>
+      <footer className="v2-footer"><a href="#home" className="v2-brand" aria-label={`Andrés Córdova — ${c.backTop}`}>Andrés Córdova</a><span>© {new Date().getFullYear()} Andrés Córdova</span><span>{c.footerNote}</span><a href="#home">{c.backTop}<ArrowRight size={14} className="v2-back-arrow" /></a></footer>
     </div>
   );
 }

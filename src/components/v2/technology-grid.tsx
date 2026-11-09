@@ -7,20 +7,25 @@ import { Pause, Play } from "lucide-react";
 const groups = [
   { es: "Frontend & UX/UI", en: "Frontend & UX/UI", technologies: [
     ["React", "react"], ["Next.js", "nextdotjs"], ["Angular", "angular"],
-    ["Vue.js", "vuedotjs"], ["TypeScript", "typescript"], ["Tailwind CSS", "tailwindcss"],
+    ["Vue 3", "vuedotjs"], ["TypeScript", "typescript"], ["Tailwind CSS", "tailwindcss"],
+    ["JavaScript"], ["HTML5 & CSS3"],
   ] },
   { es: "Backend", en: "Backend", technologies: [
     ["Node.js", "nodedotjs"], ["NestJS", "nestjs"], ["Python", "python"],
     ["Django", "django"], ["PHP", "php"], ["Java", "java"],
+    ["Spring Framework"], ["Laravel"], ["REST APIs"], ["Microservices"],
   ] },
   { es: "Datos e integraciones", en: "Data & integrations", technologies: [
     ["PostgreSQL", "postgresql"], ["MySQL", "mysql"], ["Prisma", "prisma"],
     ["OpenAPI", "openapiinitiative"], ["WordPress", "wordpress"], ["Stripe", "stripe"],
+    ["MongoDB"], ["SQL Server"], ["SQL"],
   ] },
   { es: "Herramientas e IA", en: "Tools & AI", technologies: [
     ["Codex", "codex"], ["Antigravity", "antigravity"], ["OpenCode", "opencode"],
-    ["Claude / Anthropic", "anthropic"], ["MCP", "modelcontextprotocol"], ["Docker", "docker"],
-    ["Linux", "linux"], ["Git", "git"], ["GitHub Actions", "githubactions"],
+    ["Claude Code", "anthropic"], ["MCP", "modelcontextprotocol"], ["Docker", "docker"],
+    ["Linux/Unix", "linux"], ["Git", "git"], ["GitHub Actions", "githubactions"],
+    ["Azure DevOps"], ["CI/CD"], ["Google Cloud"], ["Gemini"], ["GitHub Copilot"],
+    ["Prompt engineering"], ["RAG"],
   ] },
 ];
 
@@ -110,12 +115,12 @@ export function TechnologyGrid({ locale, motionPaused = false, onResumeMotion }:
       <div className="v2-tech-scene">
         <div className="v2-tech-backdrop" aria-hidden="true">
           <div className="v2-tech-orbit" />
-          {group.technologies.slice(0, 6).map(([, icon], iconIndex) => <Image className={`v2-tech-mark v2-tech-mark-${iconIndex}`} key={icon} src={`/technologies/${icon}.svg`} alt="" width={120} height={120} />)}
+          {group.technologies.filter(([, icon]) => icon).slice(0, 6).map(([, icon], iconIndex) => <Image className={`v2-tech-mark v2-tech-mark-${iconIndex}`} key={icon} src={`/technologies/${icon}.svg`} alt="" width={120} height={120} />)}
         </div>
         <div className="v2-tech-meta"><span>0{index + 1}<i />04</span><span>{(es ? ["DISEÑO + INTERACCIÓN", "LÓGICA + ARQUITECTURA", "DATOS + CONEXIONES", "ENTREGA + INTELIGENCIA"] : ["DESIGN + INTERACTION", "LOGIC + ARCHITECTURE", "DATA + CONNECTIONS", "DELIVERY + INTELLIGENCE"])[index]}</span></div>
         <div className="v2-tech-banner-title">
           <h3 id={`tech-title-${index}`}>{index === 0 ? <>Frontend <em>& UX/UI</em></> : index === 2 ? (es ? <>Datos <em>& conexiones</em></> : <>Data <em>& connections</em></>) : index === 3 ? (es ? <>Herramientas <em>& IA</em></> : <>Tools <em>& AI</em></>) : <em>Backend</em>}</h3>
-          <p>{(es ? ["Interfaces pensadas para las personas.", "La lógica detrás de cada producto.", "Cada pieza, conectada con intención.", "Codex, Claude, Antigravity y OpenCode para construir con IA. Harness, agentes, gestión de contexto, RAG, MCP y evaluación para conectar el flujo completo."] : ["Interfaces designed around people.", "The logic behind every product.", "Every piece, connected with intention.", "Codex, Claude, Antigravity, and OpenCode for building with AI. Harnesses, agents, context management, RAG, MCP, and evaluation to connect the entire workflow."])[index]}</p>
+          <p>{(es ? ["Interfaces pensadas para las personas.", "La lógica detrás de cada producto.", "Cada pieza, conectada con intención.", "Codex, Claude Code, Gemini y GitHub Copilot para desarrollar con IA. Asistentes con RAG, búsqueda semántica y memoria conversacional; integraciones MCP y automatización de procesos."] : ["Interfaces designed around people.", "The logic behind every product.", "Every piece, connected with intention.", "Codex, Claude Code, Gemini, and GitHub Copilot for AI-assisted development. Assistants with RAG, semantic search, and conversational memory; MCP integrations and workflow automation."])[index]}</p>
         </div>
         <ul className="v2-tech-accessible" aria-label={group[locale]}>{group.technologies.map(([name]) => <li key={name}>{name}</li>)}</ul>
       </div>

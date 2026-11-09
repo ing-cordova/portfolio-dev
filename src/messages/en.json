@@ -10,8 +10,8 @@
   },
   "About": {
     "title": "About Me",
-    "paragraph1": "Systems Engineer & Full Stack Developer with 2.5+ years of experience designing and implementing scalable software solutions. Skilled in backend (Java, Node.js, Python, DJango PHP), frontend (Vue3, React, TypeScript), and databases (PostgreSQL, MySQL, MongoDB). Proficient in Docker, Git, CI/CD, and Linux.",
-    "paragraph2": "Strong background in software architecture, microservices, and deployment. Bilingual: English & Spanish. Seeking remote opportunities to contribute to innovative and impactful projects.",
+    "paragraph1": "Systems Engineer and Full Stack Developer with over three and a half years of experience designing and implementing scalable software solutions. Experience in backend (Java, Node.js, Python, Django, PHP), frontend (Vue 3, React, TypeScript), and databases (PostgreSQL, MySQL, MongoDB). Proficient in Docker, Git, CI/CD, and Linux.",
+    "paragraph2": "Strong background in software architecture, microservices, and deployment. Bilingual in English and Spanish. Seeking challenging opportunities to contribute to innovative and impactful projects.",
     "cta": "Ready to collaborate?",
     "cta_pharagraph": "Always open to new projects and opportunities",
     "stats": {
@@ -83,24 +83,24 @@
     "title": "Work Experience",
     "items": [
       {
-        "date": "2024 - Present",
+        "date": "May 2024 - Present",
         "title": "Software Developer",
         "company": "Secretaría de Innovación de la Presidencia, El Salvador.",
-        "description": "Developing innovative applications for different government portfolios, implementing new, scalable technologies.",
+        "description": "Full-stack development of government solutions, integrating AI to accelerate project delivery. Implementation of chatbots, conversational assistants, and automated workflows to optimize public processes and services, collaborating with multidisciplinary teams on projects with national impact.",
         "location": "on-site"
       },
       {
-        "date": "2023 - 2024",
-        "title": "Backend Developer",
+        "date": "July 2023 - April 2024",
+        "title": "Software Developer",
         "company": "Techy-We",
-        "description": "I participated in projects for international companies in the banking sector, implementing scalable and more secure architectures on the backend, as well as effective communication between colleagues from different countries, todeliver a quality product.",
+        "description": "Backend development for international banking companies, implementing secure and scalable architectures. Delivery of new features, API development and testing, and creation and integration of microservices, collaborating with teams across countries.",
         "location": "remote"
       },
       {
-        "date": "2023 - 2023",
+        "date": "January 2023 - April 2023",
         "title": "Application Development Trainee",
         "company": "Telus International Digital Solutions",
-        "description": "As a software development intern, collaborating with large teams, I learned backend, frontend, and devops technologies, preparing us for internal company projects and professional skill development, as well as good communication with product owners.",
+        "description": "Backend and frontend development with Java, React, and Spring Framework. Training in DevOps technologies and agile methodologies for internal projects, with English communication and collaboration with teams and product owners.",
         "location": "remote"
       }
     ]
@@ -119,7 +119,7 @@
       },
       "backend": {
         "title": "Backend",
-        "items": ["NestJS", "Node.js", "Loopback4","Java", "Spring Framework", "Python", "Django", "Laravel"]
+        "items": ["NestJS", "Node.js", "Loopback4","Java", "Spring Framework", "Python", "Django", "Laravel", "PHP", "REST APIs", "Microservices"]
       },
       "databases": {
         "title": "Databases",
@@ -127,7 +127,7 @@
       },
       "tools": {
         "title": "Tools & DevOps",
-        "items": ["Git & Version Control", "Docker", "Azure DevOps", "Linux/Unix"]
+        "items": ["Git & Version Control", "Docker", "Azure DevOps", "Linux/Unix", "CI/CD", "Google Cloud", "Claude Code", "Gemini", "Codex", "GitHub Copilot", "Prompt engineering", "RAG", "MCP"]
       },
       "server": {
         "title": "Server",
